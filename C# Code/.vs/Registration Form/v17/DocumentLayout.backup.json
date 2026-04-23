@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\lenovo\\onedrive\\desktop\\swe project\\c# code\\forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\lenovo\\onedrive\\desktop\\swe project\\c# code\\forms\\organizers\\organizerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\organizers\\organizerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\lenovo\\onedrive\\desktop\\swe project\\c# code\\forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\lenovo\\onedrive\\desktop\\swe project\\c# code\\forms\\attendees\\attendeeinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\attendees\\attendeeinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T22:48:51.709Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrganizerInterface.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Organizers\\OrganizerInterface.cs",
+              "RelativeDocumentMoniker": "Forms\\Organizers\\OrganizerInterface.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Organizers\\OrganizerInterface.cs",
+              "RelativeToolTip": "Forms\\Organizers\\OrganizerInterface.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T12:26:19.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrganizerForm.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Organizers\\OrganizerForm.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
+              "RelativeToolTip": "Forms\\Organizers\\OrganizerForm.cs",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAvwFkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T09:50:12.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AttendeeForm.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeForm.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
+              "RelativeToolTip": "Forms\\Attendees\\AttendeeForm.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAawMUAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T09:50:19.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "35d6c266-701f-4688-981d-0b650dabfc44",
+        "Display": 0,
+        "X": 641,
+        "Y": 79,
+        "Width": 941,
+        "Height": 639,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AttendeeInterface.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
+              "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeInterface.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SWE Project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
+              "RelativeToolTip": "Forms\\Attendees\\AttendeeInterface.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCIAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:50:03.6Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

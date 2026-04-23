@@ -1,0 +1,194 @@
+-- =========================
+-- ACCOUNTS
+-- =========================
+CREATE TABLE Accounts (
+    AccountID NUMBER,
+    UserName NVARCHAR2(50) NOT NULL,
+    Password NVARCHAR2(255) NOT NULL,
+    CONSTRAINT PK_Accounts PRIMARY KEY (AccountID)
+);
+
+CREATE SEQUENCE seq_accounts START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_accounts
+BEFORE INSERT ON Accounts
+FOR EACH ROW
+WHEN (NEW.AccountID IS NULL)
+BEGIN
+    :NEW.AccountID := seq_accounts.NEXTVAL;
+END;
+/
+
+-- =========================
+-- PERSONS
+-- =========================
+CREATE TABLE Persons (
+    PersonID NUMBER,
+    AccountID NUMBER,
+    Name NVARCHAR2(100) NOT NULL,
+    Phone NVARCHAR2(20),
+    Gender NVARCHAR2(10),
+    Age NUMBER,
+
+    CONSTRAINT PK_Persons PRIMARY KEY (PersonID),
+    CONSTRAINT FK_Persons_Accounts FOREIGN KEY (AccountID)
+        REFERENCES Accounts(AccountID)
+);
+
+CREATE SEQUENCE seq_persons START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_persons
+BEFORE INSERT ON Persons
+FOR EACH ROW
+WHEN (NEW.PersonID IS NULL)
+BEGIN
+    :NEW.PersonID := seq_persons.NEXTVAL;
+END;
+/
+
+-- =========================
+-- ROLES
+-- =========================
+CREATE TABLE Attendees (
+    AttendeeID NUMBER,
+    PersonID NUMBER,
+
+    CONSTRAINT PK_Attendees PRIMARY KEY (AttendeeID),
+    CONSTRAINT FK_Attendees_Persons FOREIGN KEY (PersonID)
+        REFERENCES Persons(PersonID)
+);
+
+CREATE SEQUENCE seq_attendees START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_attendees
+BEFORE INSERT ON Attendees
+FOR EACH ROW
+WHEN (NEW.AttendeeID IS NULL)
+BEGIN
+    :NEW.AttendeeID := seq_attendees.NEXTVAL;
+END;
+/
+
+CREATE TABLE Organizers (
+    OrganizerID NUMBER,
+    PersonID NUMBER,
+
+    CONSTRAINT PK_Organizers PRIMARY KEY (OrganizerID),
+    CONSTRAINT FK_Organizers_Persons FOREIGN KEY (PersonID)
+        REFERENCES Persons(PersonID)
+);
+
+CREATE SEQUENCE seq_organizers START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_organizers
+BEFORE INSERT ON Organizers
+FOR EACH ROW
+WHEN (NEW.OrganizerID IS NULL)
+BEGIN
+    :NEW.OrganizerID := seq_organizers.NEXTVAL;
+END;
+/
+
+CREATE TABLE Admin (
+    AdminID NUMBER,
+    PersonID NUMBER,
+
+    CONSTRAINT PK_Admin PRIMARY KEY (AdminID),
+    CONSTRAINT FK_Admin_Persons FOREIGN KEY (PersonID)
+        REFERENCES Persons(PersonID)
+);
+
+CREATE SEQUENCE seq_admin START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_admin
+BEFORE INSERT ON Admin
+FOR EACH ROW
+WHEN (NEW.AdminID IS NULL)
+BEGIN
+    :NEW.AdminID := seq_admin.NEXTVAL;
+END;
+/
+
+-- =========================
+-- TIMESLOTS
+-- =========================
+CREATE TABLE TimeSlots (
+    TimeSlotID NUMBER,
+    AdminID NUMBER NOT NULL,
+    StartTime DATE NOT NULL,
+    EndTime DATE NOT NULL,
+    SlotDate DATE NOT NULL,
+
+    CONSTRAINT PK_TimeSlots PRIMARY KEY (TimeSlotID),
+    CONSTRAINT FK_TimeSlots_Admin FOREIGN KEY (AdminID)
+        REFERENCES Admin(AdminID)
+);
+
+CREATE SEQUENCE seq_timeslots START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_timeslots
+BEFORE INSERT ON TimeSlots
+FOR EACH ROW
+WHEN (NEW.TimeSlotID IS NULL)
+BEGIN
+    :NEW.TimeSlotID := seq_timeslots.NEXTVAL;
+END;
+/
+
+-- =========================
+-- EVENTS
+-- =========================
+CREATE TABLE Events (
+    EventID NUMBER,
+    OrganizerID NUMBER NOT NULL,
+    TimeSlotID NUMBER NOT NULL,
+    Title NVARCHAR2(200) NOT NULL,
+    Description CLOB,
+    Status NVARCHAR2(50),
+    Capacity NUMBER,
+
+    CONSTRAINT PK_Events PRIMARY KEY (EventID),
+    CONSTRAINT FK_Events_Organizers FOREIGN KEY (OrganizerID)
+        REFERENCES Organizers(OrganizerID),
+    CONSTRAINT FK_Events_TimeSlots FOREIGN KEY (TimeSlotID)
+        REFERENCES TimeSlots(TimeSlotID)
+);
+
+CREATE SEQUENCE seq_events START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_events
+BEFORE INSERT ON Events
+FOR EACH ROW
+WHEN (NEW.EventID IS NULL)
+BEGIN
+    :NEW.EventID := seq_events.NEXTVAL;
+END;
+/
+
+-- =========================
+-- EVENT REGISTRATIONS
+-- =========================
+CREATE TABLE EventRegistrCancel ( 
+    ID NUMBER, 
+    EventID NUMBER NOT NULL, 
+    AttendeeID NUMBER NOT NULL, 
+    CreatedAt DATE DEFAULT SYSDATE, 
+    AttendeeStatus NVARCHAR2(20), 
+
+    CONSTRAINT PK_EventRegistrCancel PRIMARY KEY (ID), 
+    CONSTRAINT FK_RegCancel_Events FOREIGN KEY (EventID) 
+        REFERENCES Events(EventID), 
+    CONSTRAINT FK_RegCancel_Attendees FOREIGN KEY (AttendeeID) 
+        REFERENCES Attendees(AttendeeID) 
+);
+
+CREATE SEQUENCE seq_eventreg START WITH 1;
+
+CREATE OR REPLACE TRIGGER trg_eventreg
+BEFORE INSERT ON EventRegistrCancel
+FOR EACH ROW
+WHEN (NEW.ID IS NULL)
+BEGIN
+    :NEW.ID := seq_eventreg.NEXTVAL;
+END;
+/
