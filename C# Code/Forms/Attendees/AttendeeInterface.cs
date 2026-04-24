@@ -15,7 +15,7 @@ namespace Registration_Form
         // the each element is raw structured as :
         // if Attendee is not Register or Withdraw yet then "eventID,OrganizerName,title,description,eventTime,eventStatus,Capacity"  [is New Event]
         // else "eventID,OrganizerName,title,Description,eventTime,eventStatus,Capacity,attendeeStatus"  
-        string[] Filter_Results(string title, DateTime startDate, DateTime endDate);
+        string[] Filter_Results(string title);
 
         #endregion
 

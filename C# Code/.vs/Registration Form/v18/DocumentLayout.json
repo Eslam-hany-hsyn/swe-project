@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\useraccountmanagement\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\useraccountmanagement\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\n8900\\downloads\\compressed\\oracle\\sw_labs\\sw_pro\\swe-project\\c# code\\forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,28 +11,16 @@
       "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\attendees\\attendeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\useraccountmanagement\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\useraccountmanagement\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|c:\\users\\n8900\\downloads\\compressed\\oracle\\sw_labs\\sw_pro\\swe-project\\c# code\\forms\\useraccountmanagement\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\useraccountmanagement\\createaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\admin\\admininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\admin\\admininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\attendees\\attendeeinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\attendees\\attendeeinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\organizers\\organizerinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\forms\\admin\\admininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2511335-A9B8-4131-B57A-B6D5253D4DC1}|Registration Form.csproj|solutionrelative:forms\\admin\\admininterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,62 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreateAccountForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs [Design]",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\CreateAccountForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T12:17:59.053Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\LoginForm.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\LoginForm.cs",
-              "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\LoginForm.cs",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\LoginForm.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAowIgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T13:33:35.342Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CreateAccountForm.cs",
-              "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAIwGcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T16:59:32.624Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "AttendeeForm.cs",
               "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
               "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeForm.cs",
               "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
               "RelativeToolTip": "Forms\\Attendees\\AttendeeForm.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAA1wJIBAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAE0BAAAAAAAAAAAMwJ4BAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-23T13:22:19.031Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AttendeeForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
               "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeForm.cs",
@@ -113,19 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T13:29:31.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "AdminInterface.cs",
               "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Admin\\AdminInterface.cs",
               "RelativeDocumentMoniker": "Forms\\Admin\\AdminInterface.cs",
@@ -133,23 +67,25 @@
               "RelativeToolTip": "Forms\\Admin\\AdminInterface.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T13:18:13.014Z"
+              "WhenOpened": "2026-04-23T13:18:13.014Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "AttendeeInterface.cs",
               "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
               "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeInterface.cs",
               "ToolTip": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
               "RelativeToolTip": "Forms\\Attendees\\AttendeeInterface.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwCUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T13:18:13.196Z"
+              "WhenOpened": "2026-04-23T13:18:13.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "OrganizerInterface.cs",
               "DocumentMoniker": "C:\\Users\\n8900\\Downloads\\Compressed\\oracle\\SW_Labs\\SW_Pro\\swe-project\\C# Code\\Forms\\Organizers\\OrganizerInterface.cs",
               "RelativeDocumentMoniker": "Forms\\Organizers\\OrganizerInterface.cs",
@@ -157,7 +93,8 @@
               "RelativeToolTip": "Forms\\Organizers\\OrganizerInterface.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T13:18:13.197Z"
+              "WhenOpened": "2026-04-23T13:18:13.197Z",
+              "EditorCaption": ""
             }
           ]
         }
