@@ -18,7 +18,7 @@ namespace Registration_Form
         private const string SearchPlaceholder = "🔍  Search events...";
         
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
+        string ordb = "data source = orcl; user id =hr; password=123;";
         public AttendeeForm() :base()
         {
             InitializeComponent();

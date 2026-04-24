@@ -15,7 +15,7 @@ namespace Registration_Form
     public partial class CreateAccountForm : BaseForm
     {
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
+        string ordb = "data source = orcl; user id =hr; password=123;";
         public CreateAccountForm() : base()
         {
             InitializeComponent();   // creates header, mainPanel, footer

@@ -17,7 +17,7 @@ namespace Registration_Form
     public partial class LoginForm : BaseForm
     {
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
+        string ordb = "data source = orcl; user id =hr; password=123;";
 
         public static int PersonID = -1;
         public LoginForm()

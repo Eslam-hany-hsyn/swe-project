@@ -5,6 +5,6 @@
     "\\Forms\\Admin",
     "\\Forms\\UserAccountManagement"
   ],
-  "SelectedNode": "\\Forms\\UserAccountManagement\\ChangePasswordForm.cs",
+  "SelectedNode": "\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
   "PreviewInSolutionExplorer": false
 }
