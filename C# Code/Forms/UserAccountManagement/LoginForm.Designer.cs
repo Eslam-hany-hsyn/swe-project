@@ -29,7 +29,7 @@ namespace Registration_Form
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.txt_EmailOrUsername = new System.Windows.Forms.TextBox();
+            this.txt_Email = new System.Windows.Forms.TextBox();
             this.btn_SignIn = new System.Windows.Forms.Button();
             this.btn_ForgotPassword = new System.Windows.Forms.Button();
             this.btn_NewAccount = new System.Windows.Forms.Button();
@@ -42,21 +42,20 @@ namespace Registration_Form
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txt_EmailOrUsername
+            // txt_Email
             // 
-            this.txt_EmailOrUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_EmailOrUsername.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.txt_EmailOrUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.txt_EmailOrUsername.Location = new System.Drawing.Point(129, 52);
-            this.txt_EmailOrUsername.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_EmailOrUsername.Name = "txt_EmailOrUsername";
-            this.txt_EmailOrUsername.Size = new System.Drawing.Size(386, 34);
-            this.txt_EmailOrUsername.TabIndex = 11;
-            this.txt_EmailOrUsername.Tag = "Email or Username";
-            this.txt_EmailOrUsername.Text = "Email or Username";
-            this.txt_EmailOrUsername.TextChanged += new System.EventHandler(this.txt_EmailOrUsername_TextChanged);
-            this.txt_EmailOrUsername.Enter += new System.EventHandler(this.txt_EmailOrPassword_Enter);
-            this.txt_EmailOrUsername.Leave += new System.EventHandler(this.txt_EmailOrPassword_Leave);
+            this.txt_Email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_Email.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.txt_Email.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.txt_Email.Location = new System.Drawing.Point(129, 52);
+            this.txt_Email.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(386, 34);
+            this.txt_Email.TabIndex = 11;
+            this.txt_Email.Tag = "Email";
+            this.txt_Email.Text = "Email";
+            this.txt_Email.Enter += new System.EventHandler(this.txt_EmailOrPassword_Enter);
+            this.txt_Email.Leave += new System.EventHandler(this.txt_EmailOrPassword_Leave);
             // 
             // btn_SignIn
             // 
@@ -118,7 +117,6 @@ namespace Registration_Form
             this.txt_Password.Tag = "Password";
             this.txt_Password.Text = "Password";
             this.txt_Password.UseSystemPasswordChar = true;
-            this.txt_Password.TextChanged += new System.EventHandler(this.txt_Password_TextChanged);
             this.txt_Password.Enter += new System.EventHandler(this.txt_EmailOrPassword_Enter);
             this.txt_Password.Leave += new System.EventHandler(this.txt_EmailOrPassword_Leave);
             // 
@@ -128,7 +126,7 @@ namespace Registration_Form
             this.mainPanel.Controls.Add(this.lbl_ErrorMessage);
             this.mainPanel.Controls.Add(this.label2);
             this.mainPanel.Controls.Add(this.label6);
-            this.mainPanel.Controls.Add(this.txt_EmailOrUsername);
+            this.mainPanel.Controls.Add(this.txt_Email);
             this.mainPanel.Controls.Add(this.txt_Password);
             this.mainPanel.Controls.Add(this.btn_SignIn);
             this.mainPanel.Controls.Add(this.btn_NewAccount);
@@ -163,7 +161,7 @@ namespace Registration_Form
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 27);
             this.label2.TabIndex = 32;
-            this.label2.Text = "Email/Username";
+            this.label2.Text = "Email";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
@@ -217,7 +215,7 @@ namespace Registration_Form
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txt_EmailOrUsername;
+        private System.Windows.Forms.TextBox txt_Email;
         private System.Windows.Forms.Button btn_SignIn;
         private System.Windows.Forms.Button btn_ForgotPassword;
         private System.Windows.Forms.Button btn_NewAccount;

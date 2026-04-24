@@ -78,40 +78,35 @@ namespace Registration_Form
 
         private void btn_SignIn_Click(object sender, EventArgs e)
         {
-            (int id, string role) = Login(txt_EmailOrUsername.Text,txt_Password.Text);
+            (int id, string role) = Login(txt_Email.Text,txt_Password.Text);
             if (id != -1)
             {
                 PersonID = id;
                 if(role.ToLower() == "organizer")
                 {
-                    OrganizerForm org = new OrganizerForm();
-                    org.Show();
-
+                    OrganizerForm user = new OrganizerForm();
+                    user.Show();
                 }
                 else if (role.ToLower() == "admin")
                 {
-                    AdminForm org = new AdminForm();
-                    org.Show();
+                    AdminForm user = new AdminForm();
+                    user.Show();
                 }
-                else
+                else if (role.ToLower() == "attendee")
                 {
-                    AttendeeForm org = new AttendeeForm();
-                    org.Show();
+                    AttendeeForm user = new AttendeeForm();
+                    user.Show();
                 }
-                this.Close();
+                this.Hide();
             }
             else
               lbl_ErrorMessage.Show();
         }
 
-        private void txt_EmailOrUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         
         // this function should return the Person id and role of the user if is exist else return -1
-        (int id , string role) Login(string username, string password)
+        (int id , string role) Login(string email, string password)
         {
             int personId = -1;
             string userRole = "";
@@ -124,7 +119,7 @@ namespace Registration_Form
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    cmd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = email;
                     cmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
                     cmd.Parameters.Add("p_personID", OracleDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_role", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
