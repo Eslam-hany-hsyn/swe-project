@@ -49,10 +49,10 @@ namespace Registration_Form
             this.flowLayoutPanel_Cards.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel_Cards.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel_Cards.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel_Cards.Location = new System.Drawing.Point(3, 131);
+            this.flowLayoutPanel_Cards.Location = new System.Drawing.Point(3, 135);
             this.flowLayoutPanel_Cards.Name = "flowLayoutPanel_Cards";
             this.flowLayoutPanel_Cards.Padding = new System.Windows.Forms.Padding(20);
-            this.flowLayoutPanel_Cards.Size = new System.Drawing.Size(952, 510);
+            this.flowLayoutPanel_Cards.Size = new System.Drawing.Size(958, 523);
             this.flowLayoutPanel_Cards.TabIndex = 2;
             // 
             // lbl_PageTitle
@@ -62,11 +62,11 @@ namespace Registration_Form
             this.lbl_PageTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_PageTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_PageTitle.ForeColor = System.Drawing.Color.White;
-            this.lbl_PageTitle.Location = new System.Drawing.Point(0, 64);
+            this.lbl_PageTitle.Location = new System.Drawing.Point(0, 66);
             this.lbl_PageTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_PageTitle.Name = "lbl_PageTitle";
             this.lbl_PageTitle.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.lbl_PageTitle.Size = new System.Drawing.Size(958, 64);
+            this.lbl_PageTitle.Size = new System.Drawing.Size(964, 66);
             this.lbl_PageTitle.TabIndex = 1;
             this.lbl_PageTitle.Text = "Upcoming Events";
             this.lbl_PageTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,7 +93,7 @@ namespace Registration_Form
             this.dtp_EndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_EndDate.Location = new System.Drawing.Point(540, 12);
             this.dtp_EndDate.Name = "dtp_EndDate";
-            this.dtp_EndDate.Size = new System.Drawing.Size(120, 34);
+            this.dtp_EndDate.Size = new System.Drawing.Size(120, 25);
             this.dtp_EndDate.TabIndex = 3;
             // 
             // dtp_StartDate
@@ -102,7 +102,7 @@ namespace Registration_Form
             this.dtp_StartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_StartDate.Location = new System.Drawing.Point(351, 12);
             this.dtp_StartDate.Name = "dtp_StartDate";
-            this.dtp_StartDate.Size = new System.Drawing.Size(120, 34);
+            this.dtp_StartDate.Size = new System.Drawing.Size(120, 25);
             this.dtp_StartDate.TabIndex = 1;
             // 
             // lbl_DateSeparator
@@ -124,7 +124,7 @@ namespace Registration_Form
             this.txt_Search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(180)))));
             this.txt_Search.Location = new System.Drawing.Point(12, 12);
             this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Size = new System.Drawing.Size(306, 34);
+            this.txt_Search.Size = new System.Drawing.Size(306, 25);
             this.txt_Search.TabIndex = 0;
             this.txt_Search.Text = "🔍  Search events...";
             this.txt_Search.TextChanged += new System.EventHandler(this.txt_Search_TextChanged);
@@ -140,7 +140,7 @@ namespace Registration_Form
             this.btn_Bell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Bell.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btn_Bell.ForeColor = System.Drawing.Color.Gold;
-            this.btn_Bell.Location = new System.Drawing.Point(889, 3);
+            this.btn_Bell.Location = new System.Drawing.Point(895, 3);
             this.btn_Bell.Name = "btn_Bell";
             this.btn_Bell.Size = new System.Drawing.Size(57, 42);
             this.btn_Bell.TabIndex = 5;
@@ -160,7 +160,7 @@ namespace Registration_Form
             this.pnl_Toolbar.Location = new System.Drawing.Point(0, 0);
             this.pnl_Toolbar.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Toolbar.Name = "pnl_Toolbar";
-            this.pnl_Toolbar.Size = new System.Drawing.Size(958, 64);
+            this.pnl_Toolbar.Size = new System.Drawing.Size(964, 66);
             this.pnl_Toolbar.TabIndex = 5;
             // 
             // tableLayoutPanel1
@@ -177,7 +177,7 @@ namespace Registration_Form
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(958, 644);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listBox_Notifications
@@ -188,10 +188,10 @@ namespace Registration_Form
             this.listBox_Notifications.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.listBox_Notifications.ForeColor = System.Drawing.Color.MidnightBlue;
             this.listBox_Notifications.FormattingEnabled = true;
-            this.listBox_Notifications.ItemHeight = 25;
+            this.listBox_Notifications.ItemHeight = 15;
             this.listBox_Notifications.Location = new System.Drawing.Point(645, 60);
             this.listBox_Notifications.Name = "listBox_Notifications";
-            this.listBox_Notifications.Size = new System.Drawing.Size(300, 127);
+            this.listBox_Notifications.Size = new System.Drawing.Size(300, 122);
             this.listBox_Notifications.TabIndex = 6;
             this.listBox_Notifications.Visible = false;
             // 
@@ -200,7 +200,7 @@ namespace Registration_Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(958, 644);
+            this.ClientSize = new System.Drawing.Size(964, 661);
             this.Controls.Add(this.listBox_Notifications);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;

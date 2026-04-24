@@ -1,3 +1,4 @@
+using Oracle.DataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -5,14 +6,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace Registration_Form
 {
     public partial class CreateAccountForm : BaseForm
     {
+        OracleConnection con;
+        string ordb = "data source = orcl; user id =scott; password=scott;";
         public CreateAccountForm() : base()
         {
             InitializeComponent();   // creates header, mainPanel, footer
@@ -24,8 +27,9 @@ namespace Registration_Form
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            
-            
+            con = new OracleConnection(ordb);
+            con.Open();
+
         }
 
         private void txt_CheckingFormat(object sender, EventArgs e)
@@ -67,8 +71,35 @@ namespace Registration_Form
         // return true if it create else false
         bool addNewAccount(string Email, string password, string fullName, string phoneNumber, string gender, int age, string role)
         {
-            return false;
-        }
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
 
+                using (OracleCommand cmd = new OracleCommand("Add_New_Attendee_Account", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = Email;
+                    cmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
+                    cmd.Parameters.Add("p_fullName", OracleDbType.Varchar2).Value = fullName;
+                    cmd.Parameters.Add("p_phoneNumber", OracleDbType.Varchar2).Value = phoneNumber;
+                    cmd.Parameters.Add("p_gender", OracleDbType.Varchar2).Value = gender;
+                    cmd.Parameters.Add("p_age", OracleDbType.Int32).Value = age;
+                    cmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registration failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Oracle.DataAccess.Client;
 using Registration_Form.Forms.Organizers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Registration_Form
 {
     public partial class LoginForm : BaseForm
     {
+        OracleConnection con;
+        string ordb = "data source = orcl; user id =scott; password=scott;";
 
         public static int PersonID = -1;
         public LoginForm()
@@ -31,6 +34,9 @@ namespace Registration_Form
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            con = new OracleConnection(ordb);
+            con.Open();
+
             lbl_ErrorMessage.Hide();
 
         }
@@ -107,9 +113,37 @@ namespace Registration_Form
         // this function should return the Person id and role of the user if is exist else return -1
         (int id , string role) Login(string username, string password)
         {
-            return (-1,"");
+            int personId = -1;
+            string userRole = "";
+
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
+
+                using (OracleCommand cmd = new OracleCommand("Login_Process", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    cmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
+                    cmd.Parameters.Add("p_personID", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("p_role", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    personId = int.Parse(cmd.Parameters["p_personID"].Value.ToString());
+                    userRole = cmd.Parameters["p_role"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Login Error: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            return (personId, userRole);
         }
-    
-    
     }
 }

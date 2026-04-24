@@ -81,7 +81,7 @@ namespace Registration_Form
             this.txt_CurrentPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_CurrentPassword.Location = new System.Drawing.Point(130, 55);
             this.txt_CurrentPassword.Name = "txt_CurrentPassword";
-            this.txt_CurrentPassword.Size = new System.Drawing.Size(340, 34);
+            this.txt_CurrentPassword.Size = new System.Drawing.Size(340, 25);
             this.txt_CurrentPassword.TabIndex = 2;
             this.txt_CurrentPassword.Tag = "[\\s]+$";
             this.txt_CurrentPassword.Text = "Current Password";
@@ -111,7 +111,7 @@ namespace Registration_Form
             this.txt_NewPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_NewPassword.Location = new System.Drawing.Point(130, 145);
             this.txt_NewPassword.Name = "txt_NewPassword";
-            this.txt_NewPassword.Size = new System.Drawing.Size(340, 34);
+            this.txt_NewPassword.Size = new System.Drawing.Size(340, 25);
             this.txt_NewPassword.TabIndex = 4;
             this.txt_NewPassword.Tag = "[\\s]+$";
             this.txt_NewPassword.Text = "New Password";
@@ -141,7 +141,7 @@ namespace Registration_Form
             this.txt_ConfirmNewPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_ConfirmNewPassword.Location = new System.Drawing.Point(130, 235);
             this.txt_ConfirmNewPassword.Name = "txt_ConfirmNewPassword";
-            this.txt_ConfirmNewPassword.Size = new System.Drawing.Size(340, 34);
+            this.txt_ConfirmNewPassword.Size = new System.Drawing.Size(340, 25);
             this.txt_ConfirmNewPassword.TabIndex = 6;
             this.txt_ConfirmNewPassword.Tag = "[\\s]+$";
             this.txt_ConfirmNewPassword.Text = "Confirm New Password";
@@ -202,12 +202,13 @@ namespace Registration_Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::Registration_Form.Properties.Resources.background1;
             this.CancelButton = this.btn_ChangePassword;
-            this.ClientSize = new System.Drawing.Size(778, 544);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ChangePasswordForm";
             this.Text = "Change Password";
+            this.Load += new System.EventHandler(this.ChangePasswordForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.footer.ResumeLayout(false);

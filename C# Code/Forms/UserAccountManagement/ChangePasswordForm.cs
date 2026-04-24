@@ -1,3 +1,4 @@
+using Oracle.DataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,9 @@ namespace Registration_Form
     public partial class ChangePasswordForm : BaseForm
     {
         string username = "";
+
+        OracleConnection con;
+        string ordb = "data source = orcl; user id =scott; password=scott;";
         public ChangePasswordForm() : base()
         {
             InitializeComponent();
@@ -68,7 +72,37 @@ namespace Registration_Form
         // return true if it create else false
         bool changePassword(string username, string password)
         {
-            return false;
+            int rowsAffected = 0;
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
+
+                using (OracleCommand cmd = new OracleCommand("Change_User_Password", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    cmd.Parameters.Add("p_newPassword", OracleDbType.Varchar2).Value = password;
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating password: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            return rowsAffected > 0;
+        }
+
+        private void ChangePasswordForm_Load(object sender, EventArgs e)
+        {
+            con = new OracleConnection(ordb);
+            con.Open();
         }
     }
 }

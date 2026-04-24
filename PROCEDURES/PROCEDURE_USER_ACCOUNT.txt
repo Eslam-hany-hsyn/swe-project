@@ -1,0 +1,62 @@
+
+CREATE OR REPLACE PROCEDURE Add_New_Attendee_Account ( p_email VARCHAR2,  p_password VARCHAR2, p_fullName VARCHAR2, p_phoneNumber VARCHAR2, p_gender VARCHAR2, p_age NUMBER, p_role VARCHAR2 ) 
+AS
+    v_accountID NUMBER;
+    v_personID  NUMBER;
+BEGIN
+
+    INSERT INTO Accounts (UserName, Password)
+    VALUES (p_email, p_password)
+    RETURNING AccountID INTO v_accountID;
+    
+    INSERT INTO Persons (AccountID, Name, Phone, Gender, Age)
+    VALUES (v_accountID, p_fullName, p_phoneNumber, p_gender, p_age)
+    RETURNING PersonID INTO v_personID;
+
+    IF UPPER(p_role) = 'ATTENDEE' THEN
+        INSERT INTO Attendees (PersonID) VALUES (v_personID); 
+    ELSIF UPPER(p_role) = 'ORGANIZER' THEN
+        INSERT INTO Organizers (PersonID) VALUES (v_personID);
+    END IF;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;
+
+CREATE OR REPLACE PROCEDURE Login_Process ( p_username VARCHAR2, p_password VARCHAR2, p_personID OUT NUMBER, p_role  OUT VARCHAR2) 
+AS
+BEGIN
+    SELECT P.PERSONID,
+           CASE 
+                WHEN A.ATTENDEEID IS NOT NULL THEN 'ATTENDEE'
+                WHEN O.ORGANIZERID IS NOT NULL THEN 'ORGANIZER'
+                WHEN AD.ADMINID IS NOT NULL THEN 'ADMIN'
+                ELSE 'NONE'
+           END AS USER_ROLE
+    INTO p_personID, p_role
+    FROM ACCOUNTS ACC
+    JOIN PERSONS P ON ACC.ACCOUNTID = P.ACCOUNTID
+    LEFT JOIN ATTENDEES A ON P.PERSONID = A.PERSONID
+    LEFT JOIN ORGANIZERS O ON P.PERSONID = O.PERSONID
+    LEFT JOIN ADMIN AD ON P.PERSONID = AD.PERSONID
+    WHERE ACC.USERNAME = p_username AND ACC.PASSWORD = p_password;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        p_personID := -1;
+        p_role := 'NONE';
+END;
+
+
+CREATE OR REPLACE PROCEDURE Change_User_Password ( p_username IN VARCHAR2, p_newPassword IN VARCHAR2 ) 
+AS
+BEGIN
+    UPDATE ACCOUNTS 
+    SET PASSWORD = p_newPassword
+    WHERE USERNAME = p_username;
+    
+    COMMIT;
+END;

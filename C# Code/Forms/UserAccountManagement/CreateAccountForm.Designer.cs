@@ -111,7 +111,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(410, 178);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(212, 32);
+            this.label7.Size = new System.Drawing.Size(141, 21);
             this.label7.TabIndex = 32;
             this.label7.Text = "Confirm pasword";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,7 +125,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(410, 100);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(122, 32);
+            this.label6.Size = new System.Drawing.Size(82, 21);
             this.label6.TabIndex = 30;
             this.label6.Text = "Password";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -139,7 +139,7 @@
             this.txt_ConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_ConfirmPassword.Location = new System.Drawing.Point(410, 218);
             this.txt_ConfirmPassword.Name = "txt_ConfirmPassword";
-            this.txt_ConfirmPassword.Size = new System.Drawing.Size(241, 34);
+            this.txt_ConfirmPassword.Size = new System.Drawing.Size(241, 25);
             this.txt_ConfirmPassword.TabIndex = 31;
             this.txt_ConfirmPassword.Tag = "[\\s]+$";
             this.txt_ConfirmPassword.Text = "Confirm Password";
@@ -156,7 +156,7 @@
             this.txt_Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_Name.Location = new System.Drawing.Point(30, 52);
             this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(241, 34);
+            this.txt_Name.Size = new System.Drawing.Size(241, 25);
             this.txt_Name.TabIndex = 41;
             this.txt_Name.Text = "Full Name";
             this.txt_Name.Enter += new System.EventHandler(this.txt_PlaceHolder_Enter);
@@ -171,7 +171,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(410, 17);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 32);
+            this.label5.Size = new System.Drawing.Size(53, 21);
             this.label5.TabIndex = 28;
             this.label5.Text = "Email";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -185,7 +185,7 @@
             this.txt_Phone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_Phone.Location = new System.Drawing.Point(30, 135);
             this.txt_Phone.Name = "txt_Phone";
-            this.txt_Phone.Size = new System.Drawing.Size(241, 34);
+            this.txt_Phone.Size = new System.Drawing.Size(241, 25);
             this.txt_Phone.TabIndex = 42;
             this.txt_Phone.Tag = "[\\D]";
             this.txt_Phone.Text = "Phone Number";
@@ -201,7 +201,7 @@
             this.txt_Password.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_Password.Location = new System.Drawing.Point(410, 135);
             this.txt_Password.Name = "txt_Password";
-            this.txt_Password.Size = new System.Drawing.Size(241, 34);
+            this.txt_Password.Size = new System.Drawing.Size(241, 25);
             this.txt_Password.TabIndex = 29;
             this.txt_Password.Tag = "[\\s]+$";
             this.txt_Password.Text = "Password";
@@ -218,7 +218,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(30, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 32);
+            this.label2.Size = new System.Drawing.Size(126, 21);
             this.label2.TabIndex = 44;
             this.label2.Text = "Phone Number";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,7 +232,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(30, 178);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 32);
+            this.label4.Size = new System.Drawing.Size(40, 21);
             this.label4.TabIndex = 46;
             this.label4.Text = "Age";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -246,7 +246,7 @@
             this.txt_Email.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.txt_Email.Location = new System.Drawing.Point(410, 52);
             this.txt_Email.Name = "txt_Email";
-            this.txt_Email.Size = new System.Drawing.Size(241, 34);
+            this.txt_Email.Size = new System.Drawing.Size(241, 25);
             this.txt_Email.TabIndex = 27;
             this.txt_Email.Text = "Email";
             this.txt_Email.Enter += new System.EventHandler(this.txt_PlaceHolder_Enter);
@@ -258,7 +258,7 @@
             this.txt_age.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_age.Location = new System.Drawing.Point(30, 218);
             this.txt_age.Name = "txt_age";
-            this.txt_age.Size = new System.Drawing.Size(241, 34);
+            this.txt_age.Size = new System.Drawing.Size(241, 25);
             this.txt_age.TabIndex = 48;
             // 
             // label3
@@ -270,7 +270,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(30, 278);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 32);
+            this.label3.Size = new System.Drawing.Size(65, 21);
             this.label3.TabIndex = 45;
             this.label3.Text = "Gender";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -284,7 +284,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(410, 280);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 32);
+            this.label8.Size = new System.Drawing.Size(44, 21);
             this.label8.TabIndex = 34;
             this.label8.Text = "Role";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -298,7 +298,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(30, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 32);
+            this.label1.Size = new System.Drawing.Size(88, 21);
             this.label1.TabIndex = 43;
             this.label1.Text = "Full Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,7 +314,7 @@
             "Attendee"});
             this.cmbx_Role.Location = new System.Drawing.Point(495, 278);
             this.cmbx_Role.Name = "cmbx_Role";
-            this.cmbx_Role.Size = new System.Drawing.Size(156, 36);
+            this.cmbx_Role.Size = new System.Drawing.Size(156, 25);
             this.cmbx_Role.TabIndex = 36;
             // 
             // cmbx_Gender
@@ -328,7 +328,7 @@
             "Female"});
             this.cmbx_Gender.Location = new System.Drawing.Point(127, 278);
             this.cmbx_Gender.Name = "cmbx_Gender";
-            this.cmbx_Gender.Size = new System.Drawing.Size(144, 36);
+            this.cmbx_Gender.Size = new System.Drawing.Size(144, 25);
             this.cmbx_Gender.TabIndex = 47;
             // 
             // mainPanel
@@ -363,7 +363,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::Registration_Form.Properties.Resources.background1;
             this.CancelButton = this.btn_SignUp;
-            this.ClientSize = new System.Drawing.Size(878, 544);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.footer);
             this.Controls.Add(this.header);
             this.Controls.Add(this.mainPanel);

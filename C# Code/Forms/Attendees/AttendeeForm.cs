@@ -8,13 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Registration_Form
 {
     public partial class AttendeeForm : Form, AttendeeInterface
     {
         private const string SearchPlaceholder = "🔍  Search events...";
-
+        
+        OracleConnection con;
+        string ordb = "data source = orcl; user id =scott; password=scott;";
         public AttendeeForm() :base()
         {
             InitializeComponent();
@@ -192,6 +196,9 @@ namespace Registration_Form
 
         private void AttendeeForm_Load_1(object sender, EventArgs e)
         {
+            con = new OracleConnection(ordb);
+            con.Open();
+
             string[] approvedEvents = getAllApprovedEvent();
             if (approvedEvents != null && approvedEvents.Length > 0)
             {
@@ -277,23 +284,122 @@ namespace Registration_Form
 
         public string[] Filter_Results(string title, DateTime startDate, DateTime endDate)
         {
+
             // Placeholder: Returning simulated filter results
-            return new string[0];
+            List<string> results = new List<string>();
+
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+                using (OracleCommand cmd = new OracleCommand("Filter_Results_Events", con))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_title", OracleDbType.Varchar2).Value =
+                    ( string.IsNullOrEmpty(title) || title == SearchPlaceholder ) ? (object)DBNull.Value : title;
+                    cmd.Parameters.Add("p_startDate", OracleDbType.Date).Value = startDate.Date;
+                    cmd.Parameters.Add("p_endDate", OracleDbType.Date).Value = endDate.Date;
+                    cmd.Parameters.Add("p_record", OracleDbType.RefCursor, ParameterDirection.Output);
+
+                    OracleDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string row = string.Format("{0},{1},{2},{3},{4},{5},{6}",
+                            dr["EVENTID"].ToString(),
+                            dr["TITLE"].ToString(),
+                            dr["DESCRIPTION"].ToString(),
+                            Convert.ToDateTime(dr["SLOTDATE"]).ToShortDateString(),
+                            dr["STARTTIME"].ToString() + " - " + dr["ENDTIME"].ToString(),
+                            dr["CAPACITY"].ToString(),
+                            dr["STATUS"].ToString()
+                        );
+                        results.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering results: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                con.Close();
+            }
+            return results.ToArray();
         }
 
         public void RegisterOrCancellation(int eventID, int attendeeID, string status)
         {
             // Placeholder: Insert registration database updating logic here
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
+
+                using (OracleCommand cmd = new OracleCommand("Register_Or_Cancel_Event", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    cmd.Parameters.Add("p_eventID", OracleDbType.Int32).Value = eventID;
+                    cmd.Parameters.Add("p_attendeeID", OracleDbType.Int32).Value = attendeeID;
+                    cmd.Parameters.Add("p_status", OracleDbType.Varchar2).Value = status.ToLower();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating registration status: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            { 
+                if (con.State == ConnectionState.Open) con.Close();
+            }
         }
 
         public string[] getAllApprovedEvent()
         {
             // Placeholder: Retrieve approved events for display
-            return new string[0];
+            List<string> results = new List<string>();
+
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
+
+                using (OracleCommand cmd = new OracleCommand("Get_All_Approved_Events", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_record", OracleDbType.RefCursor, ParameterDirection.Output);
+
+                    OracleDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string row = string.Format("{0},{1},{2},{3},{4},{5},{6}",
+                            dr["EVENTID"].ToString(),
+                            dr["TITLE"].ToString(),
+                            dr["DESCRIPTION"].ToString(),
+                            Convert.ToDateTime(dr["SLOTDATE"]).ToShortDateString(),
+                            dr["STARTTIME"].ToString() + " - " + dr["ENDTIME"].ToString(),
+                            dr["CAPACITY"].ToString(),
+                            dr["STATUS"].ToString()
+                        );
+                        results.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading initial events: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            return results.ToArray();
         }
 
-
         #endregion
-
     }
 }

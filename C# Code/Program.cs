@@ -19,7 +19,7 @@ namespace Registration_Form
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AttendeeForm());
+            Application.Run(new LoginForm());
         }
     }
 }
