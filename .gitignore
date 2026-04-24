@@ -1,0 +1,123 @@
+# =========================
+
+# Visual Studio / .NET .gitignore
+
+# =========================
+
+# Build results
+
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# User-specific files
+
+*.user
+*.userosscache
+*.suo
+*.rsuser
+*.sln.docstates
+
+# Visual Studio cache/options
+
+.vs/
+
+# Rider / JetBrains
+
+.idea/
+*.sln.iml
+
+# VS Code
+
+.vscode/
+
+# NuGet packages
+
+packages/
+*.nupkg
+*.snupkg
+
+# NuGet restore
+
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET Core / .NET 5+
+
+*.deps.json
+*.runtimeconfig.json
+
+# Logs
+
+*.log
+
+# Temporary files
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.cache
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Test results
+
+TestResults/
+
+# Coverage reports
+
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish output
+
+publish/
+
+# Azure / deployment
+
+*.azurePubxml
+*.pubxml
+*.publishsettings
+
+# Resharper
+
+_ReSharper*/
+*.DotSettings.user
+
+# SQL Server
+
+*.mdf
+*.ldf
+
+# Backup files
+
+*.backup
+*.old
+
+# Generated files
+
+Generated/
+*.g.cs
+*.g.i.cs
+
+# Installer files
+
+*.msi
+*.exe
+
+# Ignore database files (if local)
+
+*.db
+
+# Others
+
+*.pidb
+*.svclog
