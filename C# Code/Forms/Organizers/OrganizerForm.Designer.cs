@@ -55,6 +55,7 @@ namespace Registration_Form.Forms.Organizers
             this.dtpSubmitDate = new System.Windows.Forms.DateTimePicker();
             this.numCapacity = new System.Windows.Forms.NumericUpDown();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.btn_Logout = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControlMain.SuspendLayout();
@@ -77,6 +78,22 @@ namespace Registration_Form.Forms.Organizers
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(968, 594);
             this.tabControlMain.TabIndex = 0;
+            // 
+            // btn_Logout
+            // 
+            this.btn_Logout.BackColor = System.Drawing.Color.Crimson;
+            this.btn_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Logout.FlatAppearance.BorderSize = 0;
+            this.btn_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Logout.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold);
+            this.btn_Logout.ForeColor = System.Drawing.Color.White;
+            this.btn_Logout.Location = new System.Drawing.Point(880, 5);
+            this.btn_Logout.Name = "btn_Logout";
+            this.btn_Logout.Size = new System.Drawing.Size(55, 22);
+            this.btn_Logout.TabIndex = 8;
+            this.btn_Logout.Text = "Logout";
+            this.btn_Logout.UseVisualStyleBackColor = false;
+            this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
             // 
             // tabPageEvents
             // 
@@ -398,6 +415,7 @@ namespace Registration_Form.Forms.Organizers
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 594);
+            this.Controls.Add(this.btn_Logout);
             this.Controls.Add(this.tabControlMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.MaximumSize = new System.Drawing.Size(990, 650);
@@ -449,5 +467,6 @@ namespace Registration_Form.Forms.Organizers
         private System.Windows.Forms.Label lblTSColDate;
         private System.Windows.Forms.Label lblTSColStatus;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_Logout;
     }
 }

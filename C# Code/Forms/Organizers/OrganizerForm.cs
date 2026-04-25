@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client;
 
 namespace Registration_Form.Forms.Organizers
 {
@@ -22,6 +21,7 @@ namespace Registration_Form.Forms.Organizers
 
         private void OrganizerForm_Load(object sender, EventArgs e)
         {
+           
             // Dynamically Load Available Time Slots from Interface
             LoadAvailableSlots();
         }
@@ -33,6 +33,7 @@ namespace Registration_Form.Forms.Organizers
 
             if (slots == null || slots.Length == 0)
             {
+                
                 return;
             }
 
@@ -74,11 +75,13 @@ namespace Registration_Form.Forms.Organizers
             tableLayout.RowStyles.Clear();
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
+            // Alignments mapping the header columns: Start (25%), End (25%), Date (25%), Status (25%)
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
 
+            // Populate the standard labels (Start Time, End Time, Date)
             for (int i = 0; i < 3; i++)
             {
                 Label lblCell = new Label
@@ -93,12 +96,13 @@ namespace Registration_Form.Forms.Organizers
                 tableLayout.Controls.Add(lblCell, i, 0);
             }
 
+            // Reserve Action (Booked vs Free)
             Panel actionContainer = new Panel { Dock = DockStyle.Fill, Padding = new Padding(2) };
             Button btnBook = new Button
             {
                 Text = "Book",
                 Dock = DockStyle.Fill,
-                BackColor = Color.FromArgb(40, 167, 69),
+                BackColor = Color.FromArgb(40, 167, 69), // Green
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
@@ -121,12 +125,14 @@ namespace Registration_Form.Forms.Organizers
 
             actionContainer.Controls.Add(btnBook);
             tableLayout.Controls.Add(actionContainer, 3, 0);
+
             rowPanel.Controls.Add(tableLayout);
             return rowPanel;
         }
 
         public Panel CreateOrganizerDataRow(int eventId, string[] rowData, int width = 920)
         {
+
             Panel rowPanel = new Panel
             {
                 Height = 42,
@@ -150,12 +156,14 @@ namespace Registration_Form.Forms.Organizers
             tableLayout.RowStyles.Clear();
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30f));
+            // Alignments: Title (25%), Date (15%), Time (15%), Status (15%), Actions (30%)
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30f)); // Tweaked internal ratios to match mock left panel size
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
 
+            // 1. Text Labels
             for (int i = 0; i < 3; i++)
             {
                 Label lblCell = new Label
@@ -170,6 +178,7 @@ namespace Registration_Form.Forms.Organizers
                 tableLayout.Controls.Add(lblCell, i, 0);
             }
 
+            // 2. Status Pill (Column 3)
             Panel statusContainer = new Panel { Dock = DockStyle.Fill, Padding = new Padding(3) };
             Label lblStatus = new Label
             {
@@ -180,6 +189,7 @@ namespace Registration_Form.Forms.Organizers
                 ForeColor = Color.White
             };
 
+            // Mimic Pill Coloring
             if (rowData[3] == "Approved") lblStatus.BackColor = Color.FromArgb(40, 167, 69);
             else if (rowData[3] == "Pending") { lblStatus.BackColor = Color.FromArgb(255, 193, 7); lblStatus.ForeColor = Color.Black; }
             else if (rowData[3] == "Rejected") lblStatus.BackColor = Color.FromArgb(220, 53, 69);
@@ -188,6 +198,7 @@ namespace Registration_Form.Forms.Organizers
             statusContainer.Controls.Add(lblStatus);
             tableLayout.Controls.Add(statusContainer, 3, 0);
 
+            // 3. Actions Panel (Column 4)
             Panel actionPanel = new Panel { Dock = DockStyle.Fill };
 
             Button btnEdit = new Button
@@ -201,7 +212,7 @@ namespace Registration_Form.Forms.Organizers
                 Location = new Point(60, 3),
                 Cursor = Cursors.Hand,
                 Tag = eventId,
-                AccessibleDescription = (rowData[0] + "," + rowData[1] + "," + rowData[2] + "," + rowData[3] + "," + rowData[4] + "," + rowData[5]),
+                AccessibleDescription = (rowData[0]+","+ rowData[1] + "," + rowData[2] + "," + rowData[3] + "," + rowData[4] + "," + rowData[5]),
             };
             btnEdit.FlatAppearance.BorderSize = 0;
             btnEdit.Click += BtnEdit_Click;
@@ -230,17 +241,20 @@ namespace Registration_Form.Forms.Organizers
             return rowPanel;
         }
 
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             int eventId = (int)btn.Tag;
 
+            // Extract existing data from the row UI
             Panel actionPanel = (Panel)btn.Parent;
             TableLayoutPanel tableLayout = (TableLayoutPanel)actionPanel.Parent;
-
+            
             string currentTitle = tableLayout.GetControlFromPosition(0, 0).Text;
             string currentDate = tableLayout.GetControlFromPosition(1, 0).Text;
 
+            // Show Dialog
             using (EditEventDialog dialog = new EditEventDialog(currentTitle, "Enter description here...", currentDate, 100))
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -249,9 +263,10 @@ namespace Registration_Form.Forms.Organizers
 
                     if (success)
                     {
+                        // Update UI row visually
                         tableLayout.GetControlFromPosition(0, 0).Text = dialog.EventTitle;
                         tableLayout.GetControlFromPosition(1, 0).Text = dialog.EventDate.ToShortDateString();
-
+                        
                         MessageBox.Show($"Event ID {eventId} has been successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -276,23 +291,26 @@ namespace Registration_Form.Forms.Organizers
             Button btn = (Button)sender;
             TimeSlotIdBooked = (int)btn.Tag;
 
+            // Find the row container
             Panel actionContainer = (Panel)btn.Parent;
             TableLayoutPanel tableLayout = (TableLayoutPanel)actionContainer.Parent;
             Panel rowPanel = (Panel)tableLayout.Parent;
 
+            // Extract Slot Data
             string startTime = tableLayout.GetControlFromPosition(0, 0).Text;
             string date = tableLayout.GetControlFromPosition(2, 0).Text;
-            string eventTitle = !string.IsNullOrWhiteSpace(txtEventTitle.Text) && txtEventTitle.Text != "Event Title"
-                                ? txtEventTitle.Text : "Requested Event";
+            string eventTitle = !string.IsNullOrWhiteSpace(txtEventTitle.Text) && txtEventTitle.Text != "Event Title" ? txtEventTitle.Text : "Requested Event";
 
+            // 1. Remove from Time Slots
             flowTimeSlots.Controls.Remove(rowPanel);
             rowPanel.Dispose();
 
+            // 2. Add to Events Table with "Pending" status
+            // Event Row structure: Title, Date, Time, Status
             string[] eventData = { eventTitle, date, startTime, "Pending" };
             flowEvents.Controls.Add(CreateOrganizerDataRow(TimeSlotIdBooked, eventData));
 
-            MessageBox.Show($"Success! '{eventTitle}' has been booked for {date} at {startTime}. It is now pending administrator approval.",
-                            "Booking Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Success! '{eventTitle}' has been booked for {date} at {startTime}. It is now pending administrator approval.", "Booking Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -308,14 +326,14 @@ namespace Registration_Form.Forms.Organizers
                 return;
             }
 
+            bool updated = updateTimeSlotStatus(TimeSlotIdBooked, "booked");
             int capacity = (int)numCapacity.Value;
-            bool success = createEvent(TimeSlotIdBooked, LoginForm.PersonID, txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value, capacity);
+            bool success = createEvent(TimeSlotIdBooked, LoginForm.userID, txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value, capacity);
             TimeSlotIdBooked = -1;
 
             if (success)
             {
                 MessageBox.Show("Event submitted for review successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadAvailableSlots(); // Refresh slots list after booking
             }
         }
 
@@ -334,229 +352,53 @@ namespace Registration_Form.Forms.Organizers
         }
 
 
-        #region Tasks Will TODO
+        // You will only Implement these Functions
+        #region Tasks Will TODO 
 
-        // =========================================================
-        // FR4 - CONNECTED MODE: Insert new event row (no procedure)
-        // Requirement: Insert rows Without using Procedures
-        // =========================================================
-        public bool createEvent(int timeSlotID, int personID, string eventTitle, string description, DateTime date, int capacity)
+
+        public bool createEvent(int timeSlotID, int organizerID,string eventTitle, string description, DateTime date, int capacity)
         {
-            // Step 1: Resolve PersonID -> OrganizerID (connected mode, bind variables)
-            string getOrganizerQuery = "SELECT OrganizerID FROM Organizers WHERE PersonID = :personID";
-
-            // Step 2: Insert event directly — no stored procedure (Phase 2 requirement A.2)
-            string insertQuery = @"
-                INSERT INTO Events (OrganizerID, TimeSlotID, Title, Description, Status, Capacity)
-                VALUES (:organizerID, :timeSlotID, :title, :description, 'Pending', :capacity)";
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
-                {
-                    conn.Open();
-
-                    // Resolve OrganizerID from PersonID using bind variable
-                    int organizerID;
-                    using (OracleCommand cmd = new OracleCommand(getOrganizerQuery, conn))
-                    {
-                        cmd.Parameters.Add(new OracleParameter("personID", OracleDbType.Int32) { Value = personID });
-                        object result = cmd.ExecuteScalar();
-                        if (result == null)
-                        {
-                            MessageBox.Show("Organizer record not found for this account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                        organizerID = Convert.ToInt32(result);
-                    }
-
-                    // Insert the event row using bind variables (Phase 2 requirement A.1 + A.2)
-                    using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.Add(new OracleParameter("organizerID", OracleDbType.Int32) { Value = organizerID });
-                        cmd.Parameters.Add(new OracleParameter("timeSlotID", OracleDbType.Int32) { Value = timeSlotID });
-                        cmd.Parameters.Add(new OracleParameter("title", OracleDbType.NVarchar2) { Value = eventTitle });
-                        cmd.Parameters.Add(new OracleParameter("description", OracleDbType.Clob) { Value = description });
-                        cmd.Parameters.Add(new OracleParameter("capacity", OracleDbType.Int32) { Value = capacity });
-
-                        int rows = cmd.ExecuteNonQuery();
-                        return rows > 0;
-                    }
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("DB Error (createEvent): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            // Placeholder: Database Integration Logic
+            return true;
         }
 
-        // =========================================================
-        // FR5 - CONNECTED MODE: Cancel event using stored procedure
-        // Requirement A.3: Select ONE row using stored procedure
-        //                  with OUT parameters of NUMBER data type
-        // =========================================================
         public bool cancelEvent(int eventID)
         {
-            // Direct UPDATE — sets Status to 'Cancelled'
-            // The timeslot is automatically freed because getAllAvailableTimeSlots()
-            // uses NOT EXISTS to find slots with no active events.
-            string cancelQuery = "UPDATE Events SET Status = 'Cancelled' WHERE EventID = :eventID";
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
-                {
-                    conn.Open();
-                    using (OracleTransaction tx = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            using (OracleCommand cmd = new OracleCommand(cancelQuery, conn))
-                            {
-                                cmd.Transaction = tx;
-                                cmd.Parameters.Add(new OracleParameter("eventID", OracleDbType.Int32) { Value = eventID });
-                                cmd.ExecuteNonQuery();
-                            }
-
-                            tx.Commit();
-                            return true;
-                        }
-                        catch
-                        {
-                            tx.Rollback();
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("DB Error (cancelEvent): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            // Placeholder: Marking event as cancelled in Database
+            return true;
         }
 
-        // =========================================================
-        // FR5 - DISCONNECTED MODE: Update event using OracleDataAdapter
-        //       + OracleCommandBuilder (Phase 2 requirement B.2)
-        // =========================================================
         public bool updateEvent(int eventID, string eventTitle, string description, DateTime date, int capacity)
         {
-            // Disconnected mode: fetch the row into a DataSet, modify it,
-            // then push changes back using OracleCommandBuilder (auto-generates UPDATE)
-            string selectQuery = "SELECT EventID, Title, Description, Capacity FROM Events WHERE EventID = :eventID";
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
-                {
-                    conn.Open();
-
-                    OracleDataAdapter adapter = new OracleDataAdapter(selectQuery, conn);
-                    adapter.SelectCommand.Parameters.Add(new OracleParameter("eventID", OracleDbType.Int32) { Value = eventID });
-
-                    // CommandBuilder auto-generates the UPDATE command (Phase 2 B.2)
-                    OracleCommandBuilder builder = new OracleCommandBuilder(adapter);
-
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds, "Events");
-
-                    if (ds.Tables["Events"].Rows.Count == 0)
-                    {
-                        MessageBox.Show("Event not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    // Modify the row in the DataSet (disconnected — no live DB connection needed here)
-                    DataRow row = ds.Tables["Events"].Rows[0];
-                    row["Title"] = eventTitle;
-                    row["Description"] = description;
-                    row["Capacity"] = capacity;
-
-                    // Push changes back to DB
-                    int rowsAffected = adapter.Update(ds, "Events");
-                    return rowsAffected > 0;
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("DB Error (updateEvent): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            // Placeholder: DB Update Logic
+            return true;
         }
 
-        // =========================================================
-        // FR6 - CONNECTED MODE: Select multiple rows using stored procedure
-        //       Phase 2 requirement A.4: Select multiple rows using stored procedures
-        //       Uses Get_Available_TimeSlots stored procedure (see below)
-        //
-        //  Required stored procedure in Oracle:
-        //  CREATE OR REPLACE PROCEDURE Get_Available_TimeSlots(
-        //      p_cursor OUT SYS_REFCURSOR
-        //  ) AS
-        //  BEGIN
-        //      OPEN p_cursor FOR
-        //          SELECT ts.TimeSlotID, ts.StartTime, ts.EndTime, ts.SlotDate
-        //          FROM   TimeSlots ts
-        //          WHERE  NOT EXISTS (
-        //              SELECT 1 FROM Events e
-        //              WHERE  e.TimeSlotID = ts.TimeSlotID
-        //              AND    e.Status <> 'Cancelled'
-        //          )
-        //          ORDER BY ts.SlotDate, ts.StartTime;
-        //  END;
-        // =========================================================
         public string[] getAllAvailableTimeSlots()
         {
-            List<string> slots = new List<string>();
-
-            try
-            {
-                using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
-                {
-                    conn.Open();
-
-                    using (OracleCommand cmd = new OracleCommand("Get_Available_TimeSlots", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // OUT cursor parameter (Phase 2 A.4 — select multiple rows via stored procedure)
-                        cmd.Parameters.Add(new OracleParameter("p_cursor", OracleDbType.RefCursor)
-                        {
-                            Direction = ParameterDirection.Output
-                        });
-
-                        using (OracleDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                int id = reader.GetInt32(0);
-                                string startTime = reader.GetDateTime(1).ToString("hh:mm tt");
-                                string endTime = reader.GetDateTime(2).ToString("hh:mm tt");
-                                string slotDate = reader.GetDateTime(3).ToString("MMM dd, yyyy");
-
-                                slots.Add($"{id},{startTime},{endTime},{slotDate}");
-                            }
-                        }
-                    }
-                }
-            }
-            catch (OracleException ex)
-            {
-                MessageBox.Show("DB Error (getAllAvailableTimeSlots): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return slots.ToArray();
+            // Placeholder for FR 6: Returning list of slots to populate comboboxes
+            return new string[] { };
         }
 
-        // =========================================================
-        // TimeSlots has no Status column — availability is derived
-        // from Events table. Kept to satisfy the interface contract.
-        // =========================================================
         public bool updateTimeSlotStatus(int timeSlotID, string status)
         {
-            return true;
+            return false;
+        }
+
+
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm.userID = -1;
+            this.Close();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is LoginForm)
+                {
+                    f.Show();
+                    return;
+                }
+            }
+            new LoginForm().Show();
         }
 
         #endregion

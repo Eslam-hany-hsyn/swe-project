@@ -17,9 +17,9 @@ namespace Registration_Form
     public partial class LoginForm : BaseForm
     {
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
+        string ordb = "data source = orcl; user id =hr; password=123;";
 
-        public static int PersonID = -1;
+        public static int userID = -1;
         public LoginForm()
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace Registration_Form
             (int id, string role) = Login(txt_Email.Text,txt_Password.Text);
             if (id != -1)
             {
-                PersonID = id;
+                userID = id;
                 if(role.ToLower() == "organizer")
                 {
                     OrganizerForm user = new OrganizerForm();
@@ -108,7 +108,7 @@ namespace Registration_Form
         // this function should return the Person id and role of the user if is exist else return -1
         (int id , string role) Login(string email, string password)
         {
-            int personId = -1;
+            int userID = -1;
             string userRole = "";
 
             try
@@ -121,12 +121,12 @@ namespace Registration_Form
 
                     cmd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = email;
                     cmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
-                    cmd.Parameters.Add("p_personID", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("p_userID", OracleDbType.Int32).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("p_role", OracleDbType.Varchar2, 50).Direction = ParameterDirection.Output;
 
                     cmd.ExecuteNonQuery();
 
-                    personId = int.Parse(cmd.Parameters["p_personID"].Value.ToString());
+                    userID = int.Parse(cmd.Parameters["p_userID"].Value.ToString());
                     userRole = cmd.Parameters["p_role"].Value.ToString();
                 }
             }
@@ -138,7 +138,7 @@ namespace Registration_Form
             {
                 if (con.State == ConnectionState.Open) con.Close();
             }
-            return (personId, userRole);
+            return (userID, userRole);
         }
     }
 }

@@ -270,7 +270,7 @@ namespace Registration_Form
 
         private void btn_CreateTimeSlot_Click(object sender, EventArgs e)
         {
-            bool isCreated = createTimeSlots(LoginForm.PersonID,dtp_Date.Value, dtp_StartTime.Value.ToString("HH:mm"), dtp_EndTime.Value.ToString("HH:mm"));
+            bool isCreated = createTimeSlots(LoginForm.userID,dtp_Date.Value, dtp_StartTime.Value.ToString("HH:mm"), dtp_EndTime.Value.ToString("HH:mm"));
             if (isCreated)
                 MessageBox.Show("Time Slot successfully requested!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
@@ -305,6 +305,21 @@ namespace Registration_Form
         {
             // Placeholder for FR 9
             return new string[] { };
+        }
+
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm.userID = -1;
+            this.Close();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is LoginForm)
+                {
+                    f.Show();
+                    return;
+                }
+            }
+            new LoginForm().Show();
         }
 
         #endregion

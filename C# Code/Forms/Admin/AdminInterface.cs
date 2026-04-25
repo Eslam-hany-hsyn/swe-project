@@ -38,5 +38,6 @@ namespace Registration_Form
         string[] getAllApprovedEventTitles();
 
         #endregion
+
     }
 }
