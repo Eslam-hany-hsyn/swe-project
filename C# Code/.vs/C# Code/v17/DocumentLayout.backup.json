@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Organizers\\OrganizerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Admin\\AdminForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\LoginForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\UserAccountManagement\\LoginForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Admin\\AdminForm.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Attendees\\AttendeeForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Organizers\\OrganizerForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\Attendees\\AttendeeInterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Forms\\UserAccountManagement\\CreateAccountForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,48 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\LoginForm.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\LoginForm.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\LoginForm.cs",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\LoginForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T14:11:14.44Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminForm.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.cs",
-              "RelativeDocumentMoniker": "Forms\\Admin\\AdminForm.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.cs",
-              "RelativeToolTip": "Forms\\Admin\\AdminForm.cs",
-              "ViewState": "AgIAAA0BAAAAAAAAAAAqwEQBAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T16:13:01.899Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrganizerForm.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
-              "RelativeDocumentMoniker": "Forms\\Organizers\\OrganizerForm.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
-              "RelativeToolTip": "Forms\\Organizers\\OrganizerForm.cs",
-              "ViewState": "AgIAAFkBAAAAAAAAAAAqwJYBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T16:08:06.032Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -98,51 +46,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AttendeeInterface.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
-              "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeInterface.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeInterface.cs",
-              "RelativeToolTip": "Forms\\Attendees\\AttendeeInterface.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AdminForm.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Admin\\AdminForm.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.cs",
+              "RelativeToolTip": "Forms\\Admin\\AdminForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T15:30:54.825Z"
+              "WhenOpened": "2026-04-25T17:18:58.582Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ChangePasswordForm.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\ChangePasswordForm.Designer.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAE4AAAAoAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AdminForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.Designer.cs",
+              "RelativeDocumentMoniker": "Forms\\Admin\\AdminForm.Designer.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Admin\\AdminForm.Designer.cs",
+              "RelativeToolTip": "Forms\\Admin\\AdminForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T14:18:03.347Z"
+              "WhenOpened": "2026-04-25T17:18:57.36Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CreateAccountForm.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "RelativeDocumentMoniker": "Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "RelativeToolTip": "Forms\\UserAccountManagement\\CreateAccountForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABHAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "OrganizerForm.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
+              "RelativeDocumentMoniker": "Forms\\Organizers\\OrganizerForm.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Organizers\\OrganizerForm.cs",
+              "RelativeToolTip": "Forms\\Organizers\\OrganizerForm.cs",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAAAIYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T14:11:13.144Z"
+              "WhenOpened": "2026-04-25T17:18:42.868Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AttendeeForm.cs",
-              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
-              "RelativeDocumentMoniker": "Forms\\Attendees\\AttendeeForm.cs",
-              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Forms\\Attendees\\AttendeeForm.cs",
-              "RelativeToolTip": "Forms\\Attendees\\AttendeeForm.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAqwCgAAABIAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\lenovo\\OneDrive\\Desktop\\SoftWare Enginneering Project\\C# Code\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T15:09:09.322Z"
+              "WhenOpened": "2026-04-25T17:13:46.257Z"
             }
           ]
         }

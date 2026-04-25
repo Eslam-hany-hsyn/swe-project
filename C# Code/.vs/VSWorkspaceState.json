@@ -1,12 +1,4 @@
 {
-  "ExpandedNodes": [
-    "",
-    "\\Forms",
-    "\\Forms\\Admin",
-    "\\Forms\\Attendees",
-    "\\Forms\\Organizers",
-    "\\Forms\\UserAccountManagement"
-  ],
-  "SelectedNode": "\\Forms\\Organizers\\OrganizerForm.cs",
+  "ExpandedNodes": [],
   "PreviewInSolutionExplorer": false
 }
