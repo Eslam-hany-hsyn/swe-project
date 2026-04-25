@@ -15,11 +15,10 @@ namespace Registration_Form
 {
     public partial class ChangePasswordForm : BaseForm
     {
-        string username = "";
 
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
-        public ChangePasswordForm() : base()
+        string ordb = "data source = orcl; user id =hr; password=123;";
+        public ChangePasswordForm()
         {
             InitializeComponent();
             base.inner_header = this.header;
@@ -28,15 +27,6 @@ namespace Registration_Form
             Inner_InitializeLayout();
         }
 
-        public ChangePasswordForm(string username) : base()
-        {
-            InitializeComponent();
-            base.inner_header = this.header;
-            base.inner_mainPanel = this.mainPanel;
-            base.inner_footer = this.footer;
-            Inner_InitializeLayout();
-            this.username = username;
-        }
 
         private void txt_CheckingFormat(object sender, EventArgs e)
         {
@@ -62,7 +52,7 @@ namespace Registration_Form
 
         private void btn_ChangePassword_Click(object sender, EventArgs e)
         {
-            bool change =  changePassword(username,txt_NewPassword.Text);
+            bool change =  changePassword(txt_Email.Text,txt_NewPassword.Text);
             if(change)
                 MessageBox.Show("Password is changed ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -70,7 +60,7 @@ namespace Registration_Form
 
 
         // return true if it create else false
-        bool changePassword(string username, string password)
+        bool changePassword(string email, string password)
         {
             int rowsAffected = 0;
             try
@@ -81,7 +71,7 @@ namespace Registration_Form
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    cmd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = email;
                     cmd.Parameters.Add("p_newPassword", OracleDbType.Varchar2).Value = password;
 
                     rowsAffected = cmd.ExecuteNonQuery();

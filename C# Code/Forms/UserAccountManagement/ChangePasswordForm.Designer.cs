@@ -30,8 +30,8 @@ namespace Registration_Form
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePasswordForm));
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.lbl_CurrentPassword = new System.Windows.Forms.Label();
-            this.txt_CurrentPassword = new System.Windows.Forms.TextBox();
+            this.lbl_Email = new System.Windows.Forms.Label();
+            this.txt_Email = new System.Windows.Forms.TextBox();
             this.lbl_NewPassword = new System.Windows.Forms.Label();
             this.txt_NewPassword = new System.Windows.Forms.TextBox();
             this.lbl_ConfirmNewPassword = new System.Windows.Forms.Label();
@@ -46,8 +46,8 @@ namespace Registration_Form
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.mainPanel.Controls.Add(this.lbl_CurrentPassword);
-            this.mainPanel.Controls.Add(this.txt_CurrentPassword);
+            this.mainPanel.Controls.Add(this.lbl_Email);
+            this.mainPanel.Controls.Add(this.txt_Email);
             this.mainPanel.Controls.Add(this.lbl_NewPassword);
             this.mainPanel.Controls.Add(this.txt_NewPassword);
             this.mainPanel.Controls.Add(this.lbl_ConfirmNewPassword);
@@ -59,35 +59,35 @@ namespace Registration_Form
             this.mainPanel.Size = new System.Drawing.Size(622, 360);
             this.mainPanel.TabIndex = 7;
             // 
-            // lbl_CurrentPassword
+            // lbl_Email
             // 
-            this.lbl_CurrentPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_CurrentPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_CurrentPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_CurrentPassword.ForeColor = System.Drawing.Color.Black;
-            this.lbl_CurrentPassword.Location = new System.Drawing.Point(130, 20);
-            this.lbl_CurrentPassword.Name = "lbl_CurrentPassword";
-            this.lbl_CurrentPassword.Size = new System.Drawing.Size(210, 30);
-            this.lbl_CurrentPassword.TabIndex = 1;
-            this.lbl_CurrentPassword.Text = "Current Password";
-            this.lbl_CurrentPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_Email.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_Email.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_Email.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Email.ForeColor = System.Drawing.Color.Black;
+            this.lbl_Email.Location = new System.Drawing.Point(130, 20);
+            this.lbl_Email.Name = "lbl_Email";
+            this.lbl_Email.Size = new System.Drawing.Size(210, 30);
+            this.lbl_Email.TabIndex = 1;
+            this.lbl_Email.Text = "Email";
+            this.lbl_Email.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txt_CurrentPassword
+            // txt_Email
             // 
-            this.txt_CurrentPassword.AccessibleDescription = "Current Password";
-            this.txt_CurrentPassword.BackColor = System.Drawing.Color.White;
-            this.txt_CurrentPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_CurrentPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_CurrentPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.txt_CurrentPassword.Location = new System.Drawing.Point(130, 55);
-            this.txt_CurrentPassword.Name = "txt_CurrentPassword";
-            this.txt_CurrentPassword.Size = new System.Drawing.Size(340, 25);
-            this.txt_CurrentPassword.TabIndex = 2;
-            this.txt_CurrentPassword.Tag = "[\\s]+$";
-            this.txt_CurrentPassword.Text = "Current Password";
-            this.txt_CurrentPassword.TextChanged += new System.EventHandler(this.txt_CheckingFormat);
-            this.txt_CurrentPassword.Enter += new System.EventHandler(this.txt_PlaceHolder_Enter);
-            this.txt_CurrentPassword.Leave += new System.EventHandler(this.txt_PlaceHolder_Leave);
+            this.txt_Email.AccessibleDescription = "Email";
+            this.txt_Email.BackColor = System.Drawing.Color.White;
+            this.txt_Email.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_Email.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Email.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.txt_Email.Location = new System.Drawing.Point(130, 55);
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(340, 25);
+            this.txt_Email.TabIndex = 2;
+            this.txt_Email.Tag = "[\\s]+$";
+            this.txt_Email.Text = "Email";
+            this.txt_Email.TextChanged += new System.EventHandler(this.txt_CheckingFormat);
+            this.txt_Email.Enter += new System.EventHandler(this.txt_PlaceHolder_Enter);
+            this.txt_Email.Leave += new System.EventHandler(this.txt_PlaceHolder_Leave);
             // 
             // lbl_NewPassword
             // 
@@ -220,8 +220,8 @@ namespace Registration_Form
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label header;
         private System.Windows.Forms.TableLayoutPanel footer;
-        private System.Windows.Forms.Label lbl_CurrentPassword;
-        private System.Windows.Forms.TextBox txt_CurrentPassword;
+        private System.Windows.Forms.Label lbl_Email;
+        private System.Windows.Forms.TextBox txt_Email;
         private System.Windows.Forms.Label lbl_NewPassword;
         private System.Windows.Forms.TextBox txt_NewPassword;
         private System.Windows.Forms.Label lbl_ConfirmNewPassword;

@@ -45,16 +45,16 @@ namespace Registration_Form
         {
             if (txt_Search.Text != SearchPlaceholder)
             {
-                string[] results = Filter_Results(txt_Search.Text, dtp_StartDate.Value, dtp_EndDate.Value);
+                string[] results = Filter_Results(txt_Search.Text);
                 RefreshEventList(results);
             }
         }
 
         private void btn_Filter_Click(object sender, EventArgs e)
         {
-            string title = txt_Search.Text == SearchPlaceholder ? "" : txt_Search.Text;
-            string[] results = Filter_Results(title, dtp_StartDate.Value, dtp_EndDate.Value);
-            RefreshEventList(results);
+            //string title = txt_Search.Text == SearchPlaceholder ? "" : txt_Search.Text;
+            //string[] results = Filter_Results_By_Date( dtp_Date.Value);
+            //RefreshEventList(results);
         }
 
         private void btn_Bell_Click(object sender, EventArgs e)
@@ -282,7 +282,7 @@ namespace Registration_Form
 
         #region AttendeeInterface Implementations
 
-        public string[] Filter_Results(string title, DateTime startDate, DateTime endDate)
+        public string[] Filter_Results(string title)
         {
 
             // Placeholder: Returning simulated filter results
@@ -290,8 +290,7 @@ namespace Registration_Form
 
             try
             {
-                if (con.State != ConnectionState.Open)
-                    con.Open();
+                if (con.State != ConnectionState.Open) con.Open();
                 using (OracleCommand cmd = new OracleCommand("Filter_Results_Events", con))
                 {
 
@@ -299,22 +298,24 @@ namespace Registration_Form
 
                     cmd.Parameters.Add("p_title", OracleDbType.Varchar2).Value =
                     ( string.IsNullOrEmpty(title) || title == SearchPlaceholder ) ? (object)DBNull.Value : title;
-                    cmd.Parameters.Add("p_startDate", OracleDbType.Date).Value = startDate.Date;
-                    cmd.Parameters.Add("p_endDate", OracleDbType.Date).Value = endDate.Date;
                     cmd.Parameters.Add("p_record", OracleDbType.RefCursor, ParameterDirection.Output);
 
                     OracleDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        string eventID = dr["EVENTID"].ToString();
+                        string title1 = dr["TITLE"].ToString();
+                        string desc = dr["DESCRIPTION"].ToString(); 
+                        DateTime slotDate = Convert.ToDateTime(dr["SLOTDATE"]);
+                        DateTime startTime = Convert.ToDateTime(dr["STARTTIME"]);
+                        DateTime endTime = Convert.ToDateTime(dr["ENDTIME"]);
+                        string sDate = slotDate.ToShortDateString();
+                        string sTimeRange = startTime.ToString("HH:mm") + " - " + endTime.ToString("HH:mm");
+                        string capacity = dr["CAPACITY"].ToString();
+                        string status = dr["STATUS"].ToString();
                         string row = string.Format("{0},{1},{2},{3},{4},{5},{6}",
-                            dr["EVENTID"].ToString(),
-                            dr["TITLE"].ToString(),
-                            dr["DESCRIPTION"].ToString(),
-                            Convert.ToDateTime(dr["SLOTDATE"]).ToShortDateString(),
-                            dr["STARTTIME"].ToString() + " - " + dr["ENDTIME"].ToString(),
-                            dr["CAPACITY"].ToString(),
-                            dr["STATUS"].ToString()
-                        );
+                            eventID, title1, desc, sDate, sTimeRange, capacity, status);
+
                         results.Add(row);
                     }
                 }
@@ -325,8 +326,55 @@ namespace Registration_Form
             }
             finally
             {
-                if (con.State == ConnectionState.Open)
-                con.Close();
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            return results.ToArray();
+        }
+
+        public string[] Filter_Results_By_Date(DateTime Date)
+        {
+
+            // Placeholder: Returning simulated filter results
+            List<string> results = new List<string>();
+
+            try
+            {
+                if (con.State != ConnectionState.Open) con.Open();
+                using (OracleCommand cmd = new OracleCommand("Filter_Results_Events", con))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_Date", OracleDbType.Date).Value = Date.Date;
+                    cmd.Parameters.Add("p_record", OracleDbType.RefCursor, ParameterDirection.Output);
+
+                    OracleDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string eventID = dr["EVENTID"].ToString();
+                        string title1 = dr["TITLE"].ToString();
+                        string desc = dr["DESCRIPTION"].ToString();
+                        DateTime slotDate = Convert.ToDateTime(dr["SLOTDATE"]);
+                        DateTime startTime = Convert.ToDateTime(dr["STARTTIME"]);
+                        DateTime endTime = Convert.ToDateTime(dr["ENDTIME"]);
+                        string sDate = slotDate.ToShortDateString();
+                        string sTimeRange = startTime.ToString("HH:mm") + " - " + endTime.ToString("HH:mm");
+                        string capacity = dr["CAPACITY"].ToString();
+                        string status = dr["STATUS"].ToString();
+                        string row = string.Format("{0},{1},{2},{3},{4},{5},{6}",
+                            eventID, title1, desc, sDate, sTimeRange, capacity, status);
+
+                        results.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering results: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
             }
             return results.ToArray();
         }
@@ -376,15 +424,19 @@ namespace Registration_Form
                     OracleDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        string eventID = dr["EVENTID"].ToString();
+                        string title = dr["TITLE"].ToString();
+                        string desc = dr["DESCRIPTION"].ToString(); 
+                        DateTime slotDate = Convert.ToDateTime(dr["SLOTDATE"]);
+                        DateTime startTime = Convert.ToDateTime(dr["STARTTIME"]);
+                        DateTime endTime = Convert.ToDateTime(dr["ENDTIME"]);
+                        string sDate = slotDate.ToShortDateString();
+                        string sTimeRange = startTime.ToString("HH:mm") + " - " + endTime.ToString("HH:mm");
+                        string capacity = dr["CAPACITY"].ToString();
+                        string status = dr["STATUS"].ToString();
                         string row = string.Format("{0},{1},{2},{3},{4},{5},{6}",
-                            dr["EVENTID"].ToString(),
-                            dr["TITLE"].ToString(),
-                            dr["DESCRIPTION"].ToString(),
-                            Convert.ToDateTime(dr["SLOTDATE"]).ToShortDateString(),
-                            dr["STARTTIME"].ToString() + " - " + dr["ENDTIME"].ToString(),
-                            dr["CAPACITY"].ToString(),
-                            dr["STATUS"].ToString()
-                        );
+                            eventID, title, desc, sDate, sTimeRange, capacity, status);
+
                         results.Add(row);
                     }
                 }
@@ -401,5 +453,7 @@ namespace Registration_Form
         }
 
         #endregion
+
+
     }
 }

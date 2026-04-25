@@ -31,7 +31,6 @@ namespace Registration_Form
             this.flowLayoutPanel_Cards = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_PageTitle = new System.Windows.Forms.Label();
             this.btn_Filter = new System.Windows.Forms.Button();
-            this.dtp_EndDate = new System.Windows.Forms.DateTimePicker();
             this.dtp_StartDate = new System.Windows.Forms.DateTimePicker();
             this.lbl_DateSeparator = new System.Windows.Forms.Label();
             this.txt_Search = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@ namespace Registration_Form
             this.flowLayoutPanel_Cards.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel_Cards.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel_Cards.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel_Cards.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flowLayoutPanel_Cards.Location = new System.Drawing.Point(3, 135);
             this.flowLayoutPanel_Cards.Name = "flowLayoutPanel_Cards";
             this.flowLayoutPanel_Cards.Padding = new System.Windows.Forms.Padding(20);
@@ -60,7 +60,7 @@ namespace Registration_Form
             this.lbl_PageTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(60)))));
             this.lbl_PageTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_PageTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_PageTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lbl_PageTitle.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PageTitle.ForeColor = System.Drawing.Color.White;
             this.lbl_PageTitle.Location = new System.Drawing.Point(0, 66);
             this.lbl_PageTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -76,42 +76,34 @@ namespace Registration_Form
             this.btn_Filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(220)))));
             this.btn_Filter.FlatAppearance.BorderSize = 0;
             this.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Filter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_Filter.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Filter.ForeColor = System.Drawing.Color.White;
             this.btn_Filter.Location = new System.Drawing.Point(707, 12);
             this.btn_Filter.Name = "btn_Filter";
-            this.btn_Filter.Size = new System.Drawing.Size(74, 28);
+            this.btn_Filter.Size = new System.Drawing.Size(147, 25);
             this.btn_Filter.TabIndex = 4;
-            this.btn_Filter.Text = "Filter";
+            this.btn_Filter.Text = "Filter By Date ";
             this.btn_Filter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_Filter.UseVisualStyleBackColor = true;
             this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
             // 
-            // dtp_EndDate
-            // 
-            this.dtp_EndDate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dtp_EndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_EndDate.Location = new System.Drawing.Point(540, 12);
-            this.dtp_EndDate.Name = "dtp_EndDate";
-            this.dtp_EndDate.Size = new System.Drawing.Size(120, 25);
-            this.dtp_EndDate.TabIndex = 3;
-            // 
             // dtp_StartDate
             // 
             this.dtp_StartDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dtp_StartDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_StartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_StartDate.Location = new System.Drawing.Point(351, 12);
+            this.dtp_StartDate.Location = new System.Drawing.Point(582, 12);
             this.dtp_StartDate.Name = "dtp_StartDate";
-            this.dtp_StartDate.Size = new System.Drawing.Size(120, 25);
+            this.dtp_StartDate.Size = new System.Drawing.Size(109, 26);
             this.dtp_StartDate.TabIndex = 1;
             // 
             // lbl_DateSeparator
             // 
             this.lbl_DateSeparator.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lbl_DateSeparator.ForeColor = System.Drawing.Color.White;
-            this.lbl_DateSeparator.Location = new System.Drawing.Point(490, 9);
+            this.lbl_DateSeparator.Location = new System.Drawing.Point(519, 10);
             this.lbl_DateSeparator.Name = "lbl_DateSeparator";
-            this.lbl_DateSeparator.Size = new System.Drawing.Size(30, 31);
+            this.lbl_DateSeparator.Size = new System.Drawing.Size(46, 31);
             this.lbl_DateSeparator.TabIndex = 2;
             this.lbl_DateSeparator.Text = "📆";
             this.lbl_DateSeparator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -120,11 +112,11 @@ namespace Registration_Form
             // 
             this.txt_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
             this.txt_Search.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txt_Search.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(180)))));
-            this.txt_Search.Location = new System.Drawing.Point(12, 12);
+            this.txt_Search.Location = new System.Drawing.Point(44, 16);
             this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Size = new System.Drawing.Size(306, 25);
+            this.txt_Search.Size = new System.Drawing.Size(316, 29);
             this.txt_Search.TabIndex = 0;
             this.txt_Search.Text = "🔍  Search events...";
             this.txt_Search.TextChanged += new System.EventHandler(this.txt_Search_TextChanged);
@@ -153,7 +145,6 @@ namespace Registration_Form
             this.pnl_Toolbar.Controls.Add(this.btn_Bell);
             this.pnl_Toolbar.Controls.Add(this.txt_Search);
             this.pnl_Toolbar.Controls.Add(this.lbl_DateSeparator);
-            this.pnl_Toolbar.Controls.Add(this.dtp_EndDate);
             this.pnl_Toolbar.Controls.Add(this.btn_Filter);
             this.pnl_Toolbar.Controls.Add(this.dtp_StartDate);
             this.pnl_Toolbar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,13 +176,13 @@ namespace Registration_Form
             this.listBox_Notifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox_Notifications.BackColor = System.Drawing.Color.White;
             this.listBox_Notifications.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox_Notifications.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.listBox_Notifications.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox_Notifications.ForeColor = System.Drawing.Color.MidnightBlue;
             this.listBox_Notifications.FormattingEnabled = true;
-            this.listBox_Notifications.ItemHeight = 15;
+            this.listBox_Notifications.ItemHeight = 21;
             this.listBox_Notifications.Location = new System.Drawing.Point(645, 60);
             this.listBox_Notifications.Name = "listBox_Notifications";
-            this.listBox_Notifications.Size = new System.Drawing.Size(300, 122);
+            this.listBox_Notifications.Size = new System.Drawing.Size(300, 107);
             this.listBox_Notifications.TabIndex = 6;
             this.listBox_Notifications.Visible = false;
             // 
@@ -221,7 +212,6 @@ namespace Registration_Form
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_Cards;
         private System.Windows.Forms.Label lbl_PageTitle;
         private System.Windows.Forms.Button btn_Filter;
-        private System.Windows.Forms.DateTimePicker dtp_EndDate;
         private System.Windows.Forms.DateTimePicker dtp_StartDate;
         private System.Windows.Forms.Label lbl_DateSeparator;
         private System.Windows.Forms.TextBox txt_Search;

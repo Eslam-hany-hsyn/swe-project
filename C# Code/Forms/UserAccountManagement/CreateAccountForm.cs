@@ -62,7 +62,7 @@ namespace Registration_Form
 
         private void btn_SignUp_Click(object sender, EventArgs e)
         {
-            bool added = addNewAccount(txt_Email.Text,txt_Password.Text,txt_Name.Text,txt_Phone.Text,cmbx_Gender.SelectedText,Convert.ToInt32(txt_age.Value),cmbx_Gender.SelectedText);
+            bool added = addNewAccount(txt_Email.Text,txt_Password.Text,txt_Name.Text,txt_Phone.Text,cmbx_Gender.SelectedItem.ToString(),Convert.ToInt32(txt_age.Value), cmbx_Gender.SelectedItem.ToString());
             if (added)
                 MessageBox.Show("Account is created ", "Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
