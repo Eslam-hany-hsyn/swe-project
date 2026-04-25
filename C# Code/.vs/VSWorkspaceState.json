@@ -1,4 +1,10 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\Forms",
+    "\\Forms\\Admin",
+    "\\Forms\\Organizers"
+  ],
+  "SelectedNode": "\\Forms\\Organizers\\OrganizerForm.cs",
   "PreviewInSolutionExplorer": false
 }
