@@ -86,7 +86,6 @@ namespace Registration_Form
             this.btn_Logout.Text = "Logout";
             this.btn_Logout.UseVisualStyleBackColor = false;
             this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
-            this.btn_Logout.BringToFront();
             // 
             // tabPendingEvents
             // 

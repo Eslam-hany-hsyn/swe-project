@@ -307,7 +307,6 @@ namespace Registration_Form
             return new string[] { };
         }
 
-        #endregion
         private void btn_Logout_Click(object sender, EventArgs e)
         {
             LoginForm.userID = -1;
@@ -322,5 +321,7 @@ namespace Registration_Form
             }
             new LoginForm().Show();
         }
+
+        #endregion
     }
 }

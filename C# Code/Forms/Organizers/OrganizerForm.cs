@@ -386,7 +386,6 @@ namespace Registration_Form.Forms.Organizers
         }
 
 
-        #endregion
         private void btn_Logout_Click(object sender, EventArgs e)
         {
             LoginForm.userID = -1;
@@ -401,5 +400,7 @@ namespace Registration_Form.Forms.Organizers
             }
             new LoginForm().Show();
         }
+
+        #endregion
     }
 }

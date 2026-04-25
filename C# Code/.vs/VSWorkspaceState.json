@@ -4,8 +4,9 @@
     "\\Forms",
     "\\Forms\\Admin",
     "\\Forms\\Attendees",
+    "\\Forms\\Organizers",
     "\\Forms\\UserAccountManagement"
   ],
-  "SelectedNode": "\\Forms\\Attendees\\AttendeeForm.cs",
+  "SelectedNode": "\\Forms\\Organizers\\OrganizerForm.cs",
   "PreviewInSolutionExplorer": false
 }

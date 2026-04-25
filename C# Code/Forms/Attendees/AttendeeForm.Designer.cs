@@ -81,9 +81,9 @@ namespace Registration_Form
             this.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Filter.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Filter.ForeColor = System.Drawing.Color.White;
-            this.btn_Filter.Location = new System.Drawing.Point(707, 12);
+            this.btn_Filter.Location = new System.Drawing.Point(640, 20);
             this.btn_Filter.Name = "btn_Filter";
-            this.btn_Filter.Size = new System.Drawing.Size(147, 25);
+            this.btn_Filter.Size = new System.Drawing.Size(110, 25);
             this.btn_Filter.TabIndex = 4;
             this.btn_Filter.Text = "Filter By Date ";
             this.btn_Filter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -95,18 +95,18 @@ namespace Registration_Form
             this.dtp_StartDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtp_StartDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_StartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_StartDate.Location = new System.Drawing.Point(582, 12);
+            this.dtp_StartDate.Location = new System.Drawing.Point(535, 20);
             this.dtp_StartDate.Name = "dtp_StartDate";
-            this.dtp_StartDate.Size = new System.Drawing.Size(109, 26);
+            this.dtp_StartDate.Size = new System.Drawing.Size(100, 26);
             this.dtp_StartDate.TabIndex = 1;
             // 
             // lbl_DateSeparator
             // 
             this.lbl_DateSeparator.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lbl_DateSeparator.ForeColor = System.Drawing.Color.White;
-            this.lbl_DateSeparator.Location = new System.Drawing.Point(519, 10);
+            this.lbl_DateSeparator.Location = new System.Drawing.Point(495, 15);
             this.lbl_DateSeparator.Name = "lbl_DateSeparator";
-            this.lbl_DateSeparator.Size = new System.Drawing.Size(46, 31);
+            this.lbl_DateSeparator.Size = new System.Drawing.Size(35, 35);
             this.lbl_DateSeparator.TabIndex = 2;
             this.lbl_DateSeparator.Text = "📆";
             this.lbl_DateSeparator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -117,9 +117,9 @@ namespace Registration_Form
             this.txt_Search.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Search.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(180)))));
-            this.txt_Search.Location = new System.Drawing.Point(44, 16);
+            this.txt_Search.Location = new System.Drawing.Point(20, 18);
             this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Size = new System.Drawing.Size(316, 29);
+            this.txt_Search.Size = new System.Drawing.Size(250, 29);
             this.txt_Search.TabIndex = 0;
             this.txt_Search.Text = "🔍  Search events...";
             this.txt_Search.TextChanged += new System.EventHandler(this.txt_Search_TextChanged);
@@ -135,9 +135,9 @@ namespace Registration_Form
             this.btn_Bell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Bell.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btn_Bell.ForeColor = System.Drawing.Color.Gold;
-            this.btn_Bell.Location = new System.Drawing.Point(895, 3);
+            this.btn_Bell.Location = new System.Drawing.Point(900, 12);
             this.btn_Bell.Name = "btn_Bell";
-            this.btn_Bell.Size = new System.Drawing.Size(57, 42);
+            this.btn_Bell.Size = new System.Drawing.Size(40, 40);
             this.btn_Bell.TabIndex = 5;
             this.btn_Bell.Text = "🔔";
             this.btn_Bell.Click += new System.EventHandler(this.btn_Bell_Click);
@@ -168,7 +168,7 @@ namespace Registration_Form
             this.btn_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Logout.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold);
             this.btn_Logout.ForeColor = System.Drawing.Color.White;
-            this.btn_Logout.Location = new System.Drawing.Point(830, 15);
+            this.btn_Logout.Location = new System.Drawing.Point(755, 21);
             this.btn_Logout.Name = "btn_Logout";
             this.btn_Logout.Size = new System.Drawing.Size(55, 22);
             this.btn_Logout.TabIndex = 8;
@@ -183,9 +183,9 @@ namespace Registration_Form
             this.btn_FilterStartTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_FilterStartTime.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
             this.btn_FilterStartTime.ForeColor = System.Drawing.Color.White;
-            this.btn_FilterStartTime.Location = new System.Drawing.Point(400, 35);
+            this.btn_FilterStartTime.Location = new System.Drawing.Point(375, 20);
             this.btn_FilterStartTime.Name = "btn_FilterStartTime";
-            this.btn_FilterStartTime.Size = new System.Drawing.Size(120, 25);
+            this.btn_FilterStartTime.Size = new System.Drawing.Size(110, 25);
             this.btn_FilterStartTime.TabIndex = 7;
             this.btn_FilterStartTime.Text = "Filter by Start Time";
             this.btn_FilterStartTime.UseVisualStyleBackColor = true;
@@ -196,9 +196,9 @@ namespace Registration_Form
             this.cmb_Time.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Time.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cmb_Time.FormattingEnabled = true;
-            this.cmb_Time.Location = new System.Drawing.Point(400, 10);
+            this.cmb_Time.Location = new System.Drawing.Point(280, 20);
             this.cmb_Time.Name = "cmb_Time";
-            this.cmb_Time.Size = new System.Drawing.Size(120, 23);
+            this.cmb_Time.Size = new System.Drawing.Size(90, 23);
             this.cmb_Time.TabIndex = 6;
             // 
             // tableLayoutPanel1
