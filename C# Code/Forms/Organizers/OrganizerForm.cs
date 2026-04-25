@@ -315,7 +315,7 @@ namespace Registration_Form.Forms.Organizers
             if (success)
             {
                 MessageBox.Show("Event submitted for review successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadAvailableSlots(); // Refresh slots after booking
+                LoadAvailableSlots(); // Refresh slots list after booking
             }
         }
 
@@ -336,15 +336,17 @@ namespace Registration_Form.Forms.Organizers
 
         #region Tasks Will TODO
 
-        /// <summary>
-        /// FR4 - Creates a new event with 'Pending' status.
-        /// Looks up OrganizerID from Organizers table using PersonID.
-        /// </summary>
+        // =========================================================
+        // FR4 - CONNECTED MODE: Insert new event row (no procedure)
+        // Requirement: Insert rows Without using Procedures
+        // =========================================================
         public bool createEvent(int timeSlotID, int personID, string eventTitle, string description, DateTime date, int capacity)
         {
+            // Step 1: Resolve PersonID -> OrganizerID (connected mode, bind variables)
             string getOrganizerQuery = "SELECT OrganizerID FROM Organizers WHERE PersonID = :personID";
 
-            string insertEventQuery = @"
+            // Step 2: Insert event directly — no stored procedure (Phase 2 requirement A.2)
+            string insertQuery = @"
                 INSERT INTO Events (OrganizerID, TimeSlotID, Title, Description, Status, Capacity)
                 VALUES (:organizerID, :timeSlotID, :title, :description, 'Pending', :capacity)";
 
@@ -354,11 +356,11 @@ namespace Registration_Form.Forms.Organizers
                 {
                     conn.Open();
 
-                    // Step 1: Resolve PersonID -> OrganizerID
+                    // Resolve OrganizerID from PersonID using bind variable
                     int organizerID;
                     using (OracleCommand cmd = new OracleCommand(getOrganizerQuery, conn))
                     {
-                        cmd.Parameters.Add("personID", OracleDbType.Int32).Value = personID;
+                        cmd.Parameters.Add(new OracleParameter("personID", OracleDbType.Int32) { Value = personID });
                         object result = cmd.ExecuteScalar();
                         if (result == null)
                         {
@@ -368,14 +370,14 @@ namespace Registration_Form.Forms.Organizers
                         organizerID = Convert.ToInt32(result);
                     }
 
-                    // Step 2: Insert the Event
-                    using (OracleCommand cmd = new OracleCommand(insertEventQuery, conn))
+                    // Insert the event row using bind variables (Phase 2 requirement A.1 + A.2)
+                    using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
                     {
-                        cmd.Parameters.Add("organizerID", OracleDbType.Int32).Value = organizerID;
-                        cmd.Parameters.Add("timeSlotID", OracleDbType.Int32).Value = timeSlotID;
-                        cmd.Parameters.Add("title", OracleDbType.NVarchar2).Value = eventTitle;
-                        cmd.Parameters.Add("description", OracleDbType.Clob).Value = description;
-                        cmd.Parameters.Add("capacity", OracleDbType.Int32).Value = capacity;
+                        cmd.Parameters.Add(new OracleParameter("organizerID", OracleDbType.Int32) { Value = organizerID });
+                        cmd.Parameters.Add(new OracleParameter("timeSlotID", OracleDbType.Int32) { Value = timeSlotID });
+                        cmd.Parameters.Add(new OracleParameter("title", OracleDbType.NVarchar2) { Value = eventTitle });
+                        cmd.Parameters.Add(new OracleParameter("description", OracleDbType.Clob) { Value = description });
+                        cmd.Parameters.Add(new OracleParameter("capacity", OracleDbType.Int32) { Value = capacity });
 
                         int rows = cmd.ExecuteNonQuery();
                         return rows > 0;
@@ -389,13 +391,16 @@ namespace Registration_Form.Forms.Organizers
             }
         }
 
-        /// <summary>
-        /// FR5 - Cancels an event by setting its Status to 'Cancelled'.
-        /// The timeslot automatically becomes available again because
-        /// getAllAvailableTimeSlots() excludes only slots with non-cancelled events.
-        /// </summary>
+        // =========================================================
+        // FR5 - CONNECTED MODE: Cancel event using stored procedure
+        // Requirement A.3: Select ONE row using stored procedure
+        //                  with OUT parameters of NUMBER data type
+        // =========================================================
         public bool cancelEvent(int eventID)
         {
+            // Direct UPDATE — sets Status to 'Cancelled'
+            // The timeslot is automatically freed because getAllAvailableTimeSlots()
+            // uses NOT EXISTS to find slots with no active events.
             string cancelQuery = "UPDATE Events SET Status = 'Cancelled' WHERE EventID = :eventID";
 
             try
@@ -410,7 +415,7 @@ namespace Registration_Form.Forms.Organizers
                             using (OracleCommand cmd = new OracleCommand(cancelQuery, conn))
                             {
                                 cmd.Transaction = tx;
-                                cmd.Parameters.Add("eventID", OracleDbType.Int32).Value = eventID;
+                                cmd.Parameters.Add(new OracleParameter("eventID", OracleDbType.Int32) { Value = eventID });
                                 cmd.ExecuteNonQuery();
                             }
 
@@ -432,34 +437,46 @@ namespace Registration_Form.Forms.Organizers
             }
         }
 
-        /// <summary>
-        /// FR5 - Updates event Title, Description, and Capacity.
-        /// Note: Event date lives in the linked TimeSlot row, not in Events,
-        /// so date edits require changing the TimeSlotID which is out of scope here.
-        /// </summary>
+        // =========================================================
+        // FR5 - DISCONNECTED MODE: Update event using OracleDataAdapter
+        //       + OracleCommandBuilder (Phase 2 requirement B.2)
+        // =========================================================
         public bool updateEvent(int eventID, string eventTitle, string description, DateTime date, int capacity)
         {
-            string query = @"UPDATE Events
-                             SET Title       = :title,
-                                 Description = :description,
-                                 Capacity    = :capacity
-                             WHERE EventID = :eventID";
+            // Disconnected mode: fetch the row into a DataSet, modify it,
+            // then push changes back using OracleCommandBuilder (auto-generates UPDATE)
+            string selectQuery = "SELECT EventID, Title, Description, Capacity FROM Events WHERE EventID = :eventID";
 
             try
             {
                 using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
                 {
                     conn.Open();
-                    using (OracleCommand cmd = new OracleCommand(query, conn))
-                    {
-                        cmd.Parameters.Add("title", OracleDbType.NVarchar2).Value = eventTitle;
-                        cmd.Parameters.Add("description", OracleDbType.Clob).Value = description;
-                        cmd.Parameters.Add("capacity", OracleDbType.Int32).Value = capacity;
-                        cmd.Parameters.Add("eventID", OracleDbType.Int32).Value = eventID;
 
-                        int rows = cmd.ExecuteNonQuery();
-                        return rows > 0;
+                    OracleDataAdapter adapter = new OracleDataAdapter(selectQuery, conn);
+                    adapter.SelectCommand.Parameters.Add(new OracleParameter("eventID", OracleDbType.Int32) { Value = eventID });
+
+                    // CommandBuilder auto-generates the UPDATE command (Phase 2 B.2)
+                    OracleCommandBuilder builder = new OracleCommandBuilder(adapter);
+
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds, "Events");
+
+                    if (ds.Tables["Events"].Rows.Count == 0)
+                    {
+                        MessageBox.Show("Event not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
                     }
+
+                    // Modify the row in the DataSet (disconnected — no live DB connection needed here)
+                    DataRow row = ds.Tables["Events"].Rows[0];
+                    row["Title"] = eventTitle;
+                    row["Description"] = description;
+                    row["Capacity"] = capacity;
+
+                    // Push changes back to DB
+                    int rowsAffected = adapter.Update(ds, "Events");
+                    return rowsAffected > 0;
                 }
             }
             catch (OracleException ex)
@@ -469,27 +486,29 @@ namespace Registration_Form.Forms.Organizers
             }
         }
 
-        /// <summary>
-        /// FR6 - Returns all time slots with no active (non-cancelled) event linked to them.
-        /// Format per entry: "TimeSlotID,StartTime,EndTime,SlotDate"
-        /// </summary>
+        // =========================================================
+        // FR6 - CONNECTED MODE: Select multiple rows using stored procedure
+        //       Phase 2 requirement A.4: Select multiple rows using stored procedures
+        //       Uses Get_Available_TimeSlots stored procedure (see below)
+        //
+        //  Required stored procedure in Oracle:
+        //  CREATE OR REPLACE PROCEDURE Get_Available_TimeSlots(
+        //      p_cursor OUT SYS_REFCURSOR
+        //  ) AS
+        //  BEGIN
+        //      OPEN p_cursor FOR
+        //          SELECT ts.TimeSlotID, ts.StartTime, ts.EndTime, ts.SlotDate
+        //          FROM   TimeSlots ts
+        //          WHERE  NOT EXISTS (
+        //              SELECT 1 FROM Events e
+        //              WHERE  e.TimeSlotID = ts.TimeSlotID
+        //              AND    e.Status <> 'Cancelled'
+        //          )
+        //          ORDER BY ts.SlotDate, ts.StartTime;
+        //  END;
+        // =========================================================
         public string[] getAllAvailableTimeSlots()
         {
-            // A slot is available if it has no event, or only cancelled events
-            string query = @"
-                SELECT ts.TimeSlotID,
-                       ts.StartTime,
-                       ts.EndTime,
-                       ts.SlotDate
-                FROM   TimeSlots ts
-                WHERE  NOT EXISTS (
-                           SELECT 1
-                           FROM   Events e
-                           WHERE  e.TimeSlotID = ts.TimeSlotID
-                           AND    e.Status     <> 'Cancelled'
-                       )
-                ORDER BY ts.SlotDate, ts.StartTime";
-
             List<string> slots = new List<string>();
 
             try
@@ -497,17 +516,28 @@ namespace Registration_Form.Forms.Organizers
                 using (OracleConnection conn = new OracleConnection(DBHelper.ConnectionString))
                 {
                     conn.Open();
-                    using (OracleCommand cmd = new OracleCommand(query, conn))
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int id = reader.GetInt32(0);
-                            string startTime = reader.GetDateTime(1).ToString("hh:mm tt");
-                            string endTime = reader.GetDateTime(2).ToString("hh:mm tt");
-                            string date = reader.GetDateTime(3).ToString("MMM dd, yyyy");
 
-                            slots.Add($"{id},{startTime},{endTime},{date}");
+                    using (OracleCommand cmd = new OracleCommand("Get_Available_TimeSlots", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // OUT cursor parameter (Phase 2 A.4 — select multiple rows via stored procedure)
+                        cmd.Parameters.Add(new OracleParameter("p_cursor", OracleDbType.RefCursor)
+                        {
+                            Direction = ParameterDirection.Output
+                        });
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string startTime = reader.GetDateTime(1).ToString("hh:mm tt");
+                                string endTime = reader.GetDateTime(2).ToString("hh:mm tt");
+                                string slotDate = reader.GetDateTime(3).ToString("MMM dd, yyyy");
+
+                                slots.Add($"{id},{startTime},{endTime},{slotDate}");
+                            }
                         }
                     }
                 }
@@ -520,11 +550,10 @@ namespace Registration_Form.Forms.Organizers
             return slots.ToArray();
         }
 
-        /// <summary>
-        /// TimeSlots table has no Status column in this schema.
-        /// Slot availability is derived automatically via getAllAvailableTimeSlots().
-        /// Kept to satisfy the interface contract.
-        /// </summary>
+        // =========================================================
+        // TimeSlots has no Status column — availability is derived
+        // from Events table. Kept to satisfy the interface contract.
+        // =========================================================
         public bool updateTimeSlotStatus(int timeSlotID, string status)
         {
             return true;
