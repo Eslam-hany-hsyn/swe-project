@@ -328,7 +328,7 @@ namespace Registration_Form.Forms.Organizers
 
             bool updated = updateTimeSlotStatus(TimeSlotIdBooked, "booked");
             int capacity = (int)numCapacity.Value;
-            bool success = createEvent(TimeSlotIdBooked, LoginForm.PersonID, txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value, capacity);
+            bool success = createEvent(TimeSlotIdBooked, LoginForm.userID, txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value, capacity);
             TimeSlotIdBooked = -1;
 
             if (success)
@@ -387,5 +387,19 @@ namespace Registration_Form.Forms.Organizers
 
 
         #endregion
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm.userID = -1;
+            this.Close();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is LoginForm)
+                {
+                    f.Show();
+                    return;
+                }
+            }
+            new LoginForm().Show();
+        }
     }
 }

@@ -36,6 +36,9 @@ namespace Registration_Form
             this.txt_Search = new System.Windows.Forms.TextBox();
             this.btn_Bell = new System.Windows.Forms.Button();
             this.pnl_Toolbar = new System.Windows.Forms.Panel();
+            this.btn_Logout = new System.Windows.Forms.Button();
+            this.btn_FilterStartTime = new System.Windows.Forms.Button();
+            this.cmb_Time = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox_Notifications = new System.Windows.Forms.ListBox();
             this.pnl_Toolbar.SuspendLayout();
@@ -142,6 +145,9 @@ namespace Registration_Form
             // pnl_Toolbar
             // 
             this.pnl_Toolbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(60)))));
+            this.pnl_Toolbar.Controls.Add(this.btn_Logout);
+            this.pnl_Toolbar.Controls.Add(this.btn_FilterStartTime);
+            this.pnl_Toolbar.Controls.Add(this.cmb_Time);
             this.pnl_Toolbar.Controls.Add(this.btn_Bell);
             this.pnl_Toolbar.Controls.Add(this.txt_Search);
             this.pnl_Toolbar.Controls.Add(this.lbl_DateSeparator);
@@ -153,6 +159,47 @@ namespace Registration_Form
             this.pnl_Toolbar.Name = "pnl_Toolbar";
             this.pnl_Toolbar.Size = new System.Drawing.Size(964, 66);
             this.pnl_Toolbar.TabIndex = 5;
+            // 
+            // btn_Logout
+            // 
+            this.btn_Logout.BackColor = System.Drawing.Color.Crimson;
+            this.btn_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Logout.FlatAppearance.BorderSize = 0;
+            this.btn_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Logout.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold);
+            this.btn_Logout.ForeColor = System.Drawing.Color.White;
+            this.btn_Logout.Location = new System.Drawing.Point(830, 15);
+            this.btn_Logout.Name = "btn_Logout";
+            this.btn_Logout.Size = new System.Drawing.Size(55, 22);
+            this.btn_Logout.TabIndex = 8;
+            this.btn_Logout.Text = "Logout";
+            this.btn_Logout.UseVisualStyleBackColor = false;
+            this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
+            // 
+            // btn_FilterStartTime
+            // 
+            this.btn_FilterStartTime.BackColor = System.Drawing.Color.SeaGreen;
+            this.btn_FilterStartTime.FlatAppearance.BorderSize = 0;
+            this.btn_FilterStartTime.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_FilterStartTime.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
+            this.btn_FilterStartTime.ForeColor = System.Drawing.Color.White;
+            this.btn_FilterStartTime.Location = new System.Drawing.Point(400, 35);
+            this.btn_FilterStartTime.Name = "btn_FilterStartTime";
+            this.btn_FilterStartTime.Size = new System.Drawing.Size(120, 25);
+            this.btn_FilterStartTime.TabIndex = 7;
+            this.btn_FilterStartTime.Text = "Filter by Start Time";
+            this.btn_FilterStartTime.UseVisualStyleBackColor = true;
+            this.btn_FilterStartTime.Click += new System.EventHandler(this.btn_FilterStartTime_Click);
+            // 
+            // cmb_Time
+            // 
+            this.cmb_Time.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_Time.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cmb_Time.FormattingEnabled = true;
+            this.cmb_Time.Location = new System.Drawing.Point(400, 10);
+            this.cmb_Time.Name = "cmb_Time";
+            this.cmb_Time.Size = new System.Drawing.Size(120, 23);
+            this.cmb_Time.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
@@ -219,5 +266,8 @@ namespace Registration_Form
         private System.Windows.Forms.Panel pnl_Toolbar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox listBox_Notifications;
+        private System.Windows.Forms.Button btn_Logout;
+        private System.Windows.Forms.Button btn_FilterStartTime;
+        private System.Windows.Forms.ComboBox cmb_Time;
     }
 }

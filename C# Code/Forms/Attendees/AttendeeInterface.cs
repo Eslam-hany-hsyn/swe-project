@@ -15,7 +15,12 @@ namespace Registration_Form
         // the each element is raw structured as :
         // if Attendee is not Register or Withdraw yet then "eventID,OrganizerName,title,description,eventTime,eventStatus,Capacity"  [is New Event]
         // else "eventID,OrganizerName,title,Description,eventTime,eventStatus,Capacity,attendeeStatus"  
-        string[] Filter_Results(string title);
+       
+        string[] Filter_Results(string title, int p_attendeeid);
+
+        string[] Filter_Results_By_Date(DateTime p_date, int p_attendeeid);
+
+        string[] Filter_Results_By_Time(DateTime p_startTime, int p_attendeeid);
 
         #endregion
 
@@ -23,7 +28,7 @@ namespace Registration_Form
 
         // this function update status of Attendee
         // input status equal "register" or "cancel"
-        void RegisterOrCancellation(int eventID,int attendeeID,string status);
+        void RegisterOrCancellation(int eventID, int attendeeID, string action);
 
         #endregion
 
@@ -34,6 +39,8 @@ namespace Registration_Form
         //  each element is raw structured as :
         //  "EventID,title,description,eventdate,eventTime,eventStatus,Capacity,attendeeStatus" 
         string[] getAllApprovedEvent();  // these will display to Attendee
+
+        int Get_Total_Registered(int eventID);
 
         #endregion
 

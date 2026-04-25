@@ -15,7 +15,7 @@ namespace Registration_Form
     public partial class CreateAccountForm : BaseForm
     {
         OracleConnection con;
-        string ordb = "data source = orcl; user id =scott; password=scott;";
+        string ordb = "data source = orcl; user id =hr; password=123;";
         public CreateAccountForm() : base()
         {
             InitializeComponent();   // creates header, mainPanel, footer
@@ -62,9 +62,24 @@ namespace Registration_Form
 
         private void btn_SignUp_Click(object sender, EventArgs e)
         {
-            bool added = addNewAccount(txt_Email.Text,txt_Password.Text,txt_Name.Text,txt_Phone.Text,cmbx_Gender.SelectedItem.ToString(),Convert.ToInt32(txt_age.Value), cmbx_Gender.SelectedItem.ToString());
+            if (cmbx_Gender.SelectedItem == null || cmbx_Role.SelectedItem == null)
+            {
+                MessageBox.Show("Please select both Gender and Role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool added = addNewAccount(
+                txt_Email.Text,
+                txt_Password.Text,
+                txt_Name.Text,
+                txt_Phone.Text,
+                cmbx_Gender.SelectedItem.ToString(),
+                Convert.ToInt32(txt_age.Value),
+                cmbx_Role.SelectedItem.ToString()
+            );
+
             if (added)
-                MessageBox.Show("Account is created ", "Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Account is created ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 

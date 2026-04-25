@@ -3,8 +3,9 @@
     "",
     "\\Forms",
     "\\Forms\\Admin",
+    "\\Forms\\Attendees",
     "\\Forms\\UserAccountManagement"
   ],
-  "SelectedNode": "\\Forms\\UserAccountManagement\\CreateAccountForm.cs",
+  "SelectedNode": "\\Forms\\Attendees\\AttendeeForm.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -12,13 +12,16 @@ namespace Registration_Form.Forms.Attendees
 {
     public partial class EventsDetialsDialog : Form
     {
-        public EventsDetialsDialog(string title, string date,string time, string description)
+        //(title, organizerName, date,time, descripation, Remaining))
+        public EventsDetialsDialog(string title,string organizerName,  string date,string time, string description, string remaining)
         {
             InitializeComponent();
             label4.Text = title;
             label5.Text = date;
             label6.Text = description;
             label7.Text = time;
+            label10.Text = organizerName;
+            label12.Text = remaining;
         }
     }
 }
