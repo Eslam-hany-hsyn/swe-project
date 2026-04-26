@@ -7,24 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace Registration_Form
 {
     public partial class AdminForm : Form, AdminInterface
     {
+        string connStr = "Data Source=orcl;User Id=scott;Password=123;";
         public AdminForm()
         {
             InitializeComponent();
+
         }
         List<Control> Events = new List<Control>();
+        private int _nextTimeSlotId = 4;
+
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            // Adding mock data to visualize the Pending Events board
-            string[] pending1 = { "Google Dev Summit", "2026-05-10", "10:00 AM", "Pending" };
-            flowLayoutPanel_Events.Controls.Add(CreateAdminDataRow(101, pending1));
 
-            string[] pending2 = { "AI Workshop", "2026-06-15", "02:00 PM", "Pending" };
-            flowLayoutPanel_Events.Controls.Add(CreateAdminDataRow(102, pending2));
 
             // Load Mock Data for Time Slots Table on page 2
             string[] ts1 = { "10:00 AM", "12:00 PM", "Oct 20, 2024", "Free" };
@@ -35,6 +36,17 @@ namespace Registration_Form
 
             string[] ts3 = { "04:00 PM", "06:00 PM", "Oct 22, 2024", "Free" };
             flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(3, ts3));
+            foreach (string raw in getAllAppendingEvent())
+            {
+                string[] parts = raw.Split(',');
+                if (parts.Length >= 5)
+                {
+                    int id = int.Parse(parts[0]);
+                    string[] uiData = { parts[1], parts[2], parts[3], parts[4] };
+                    flowLayoutPanel_Events.Controls.Add(CreateAdminDataRow(id, uiData));
+                }
+            }
+
         }
 
         public Panel CreateTimeSlotDataRow(int slotId, string[] rowData, int width = 450)
@@ -96,7 +108,7 @@ namespace Registration_Form
 
             if (rowData[3] == "Booked")
             {
-                lblBook.BackColor = Color.Gray; 
+                lblBook.BackColor = Color.Gray;
             }
             else
             {
@@ -135,7 +147,7 @@ namespace Registration_Form
             tableLayout.RowStyles.Clear();
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-            
+
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15f));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15f));
@@ -159,7 +171,7 @@ namespace Registration_Form
 
             // 5th Column Action Panel
             Panel actionPanel = new Panel { Dock = DockStyle.Fill };
-            
+
             Button btnApprove = new Button
             {
                 Text = "Approve",
@@ -230,6 +242,7 @@ namespace Registration_Form
             flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(eventId, tsData));
 
             MessageBox.Show($"Event {eventId} Approved and allocated to the Time Slots schedule as Booked!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void BtnDeny_Click(object sender, EventArgs e)
@@ -237,7 +250,7 @@ namespace Registration_Form
             Button btn = (Button)sender;
             int eventId = (int)btn.Tag;
             bool isUpdated = updateEventStatus(eventId, "Denied");
-            
+
             if (!isUpdated)
             {
                 MessageBox.Show($"Event {eventId} Failed to Update!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -270,7 +283,8 @@ namespace Registration_Form
 
         private void btn_CreateTimeSlot_Click(object sender, EventArgs e)
         {
-            bool isCreated = createTimeSlots(LoginForm.userID,dtp_Date.Value, dtp_StartTime.Value.ToString("HH:mm"), dtp_EndTime.Value.ToString("HH:mm"));
+            bool isCreated = createTimeSlots(1, dtp_Date.Value, dtp_StartTime.Value.ToString("HH:mm"), dtp_EndTime.Value.ToString("HH:mm"));
+
             if (isCreated)
                 MessageBox.Show("Time Slot successfully requested!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
@@ -285,26 +299,217 @@ namespace Registration_Form
 
         public bool createTimeSlots(int admminID, DateTime date, string startTime, string endTime)
         {
-            // Placeholder: database insertion logic goes here.
-            return true;
+            if (string.IsNullOrWhiteSpace(startTime) || string.IsNullOrWhiteSpace(endTime))
+                return false;
+
+            try
+            {
+                using (OracleConnection con = new OracleConnection(connStr))
+                {
+                    con.Open();
+
+                    int adminID = 1;
+
+
+
+                    string insertSql = @"
+    INSERT INTO TimeSlots (AdminID, StartTime, EndTime, SlotDate)
+    VALUES (:adminID,
+            TO_DATE(TO_CHAR(:slotDate, 'DD/MM/YYYY') || ' ' || :startTime, 'DD/MM/YYYY HH24:MI'),
+            TO_DATE(TO_CHAR(:slotDate, 'DD/MM/YYYY') || ' ' || :endTime,   'DD/MM/YYYY HH24:MI'),
+            :slotDate)";
+
+                    using (OracleCommand cmd = new OracleCommand(insertSql, con))
+                    {
+                        cmd.BindByName = true;
+                        cmd.Parameters.Add(":adminID", OracleDbType.Int32).Value = adminID;
+                        cmd.Parameters.Add(":slotDate", OracleDbType.Date).Value = date.Date;
+                        cmd.Parameters.Add(":startTime", OracleDbType.Varchar2).Value = startTime;
+                        cmd.Parameters.Add(":endTime", OracleDbType.Varchar2).Value = endTime;
+
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            string[] rowData = { startTime, endTime, date.ToString("MMM dd, yyyy"), "Free" };
+                            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(_nextTimeSlotId++, rowData));
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating time slot: " + ex.Message, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public string[] getAllAppendingEvent()
         {
-            // Placeholder for FR 8
-            return new string[] { };
+            var results = new List<string>();
+
+            try
+            {
+                using (OracleConnection con = new OracleConnection(connStr))
+                {
+                    con.Open();
+
+                    using (OracleCommand cmd = new OracleCommand("sp_GetPendingEvents", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor)
+                                      .Direction = System.Data.ParameterDirection.Output;
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                string row = string.Join(",",
+                                    reader["EVENTID"].ToString(),
+                                    reader["TITLE"].ToString(),
+                                    reader["SLOTDATE"].ToString(),
+                                    reader["STARTTIME"].ToString(),
+                                    reader["STATUS"].ToString()
+                                );
+                                results.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading pending events: " + ex.Message, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return results.ToArray();
         }
 
         public bool updateEventStatus(int eventID, string status)
         {
-            // Placeholder for FR 8 (update DB)
-            return true;
+            if (eventID <= 0 || string.IsNullOrWhiteSpace(status))
+                return false;
+
+            try
+            {
+                using (OracleConnection con = new OracleConnection(connStr))
+                {
+                    con.Open();
+
+                    int organizerID = -1;
+                    string eventTitle = "";
+
+                    using (OracleCommand cmd = new OracleCommand("sp_GetEventOrganizerID", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("p_eventID", OracleDbType.Int32).Value = eventID;
+
+                        cmd.Parameters.Add("p_organizerID", OracleDbType.Int32, 0, "p_organizerID")
+                                      .Direction = System.Data.ParameterDirection.Output;
+
+                        cmd.Parameters.Add("p_title", OracleDbType.Varchar2, 200, "p_title")
+                                      .Direction = System.Data.ParameterDirection.Output;
+
+                        cmd.ExecuteNonQuery();
+
+                        Oracle.DataAccess.Types.OracleDecimal oraVal =
+                        (Oracle.DataAccess.Types.OracleDecimal)cmd.Parameters["p_organizerID"].Value;
+                        organizerID = (int)oraVal.Value;
+                        eventTitle = cmd.Parameters["p_title"].Value.ToString();
+                    }
+
+                    if (organizerID == -1) return false;
+
+
+                    string updateSql = "UPDATE Events SET Status = :status WHERE EventID = :eventID";
+
+                    using (OracleCommand cmd = new OracleCommand(updateSql, con))
+                    {
+                        cmd.Parameters.Add(":status", OracleDbType.NVarchar2).Value = status;
+                        cmd.Parameters.Add(":eventID", OracleDbType.Int32).Value = eventID;
+                        cmd.ExecuteNonQuery();
+                    }
+
+
+                    if (status == "Approved")
+                    {
+
+                        AttendeeForm.GlobalNotifications.Add(
+                            $"NEW EVENT: '{eventTitle}' is now approved and open for registration!");
+                    }
+                    else if (status == "Denied")
+                    {
+                        // FR9 — Notify denial
+                        AttendeeForm.GlobalNotifications.Add(
+                            $"DENIED: '{eventTitle}' was denied by the administrator.");
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating event: " + ex.Message, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public string[] getAllApprovedEventTitles()
         {
-            // Placeholder for FR 9
-            return new string[] { };
+            var results = new List<string>();
+
+            try
+            {
+                using (OracleConnection con = new OracleConnection(connStr))
+                {
+                    con.Open();
+
+                    // A.1 — SELECT using bind variable :status
+                    string sql = @"
+                SELECT e.EventID,
+                       e.Title,
+                       TO_CHAR(ts.SlotDate, 'DD/MM/YYYY') AS SlotDate
+                FROM   Events    e
+                JOIN   TimeSlots ts ON e.TimeSlotID = ts.TimeSlotID
+                WHERE  e.Status = :status
+                ORDER  BY ts.SlotDate ASC";
+
+                    using (OracleCommand cmd = new OracleCommand(sql, con))
+                    {
+                        // Bind variable — passes 'Approved' safely without string concatenation
+                        cmd.Parameters.Add(":status", OracleDbType.NVarchar2).Value = "Approved";
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string row = string.Join(",",
+                                    reader["EVENTID"].ToString(),
+                                    reader["TITLE"].ToString(),
+                                    reader["SLOTDATE"].ToString()
+                                );
+                                results.Add(row);
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading approved events: " + ex.Message, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return results.ToArray();
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)
