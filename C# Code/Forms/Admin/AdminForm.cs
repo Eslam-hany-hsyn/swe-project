@@ -307,6 +307,20 @@ namespace Registration_Form
             return new string[] { };
         }
 
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm.userID = -1;
+            this.Close();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is LoginForm)
+                {
+                    f.Show();
+                    return;
+                }
+            }
+            new LoginForm().Show();
+        }
         #endregion
     }
 }

@@ -11,7 +11,7 @@ namespace Registration_Form.Forms.Organizers
         public DateTime EventDate { get; private set; }
         public int Capacity { get; private set; }
 
-        public EditEventDialog(string currentTitle, string currentDesc, string currentDate, int currentCap)
+        public EditEventDialog(string currentTitle, string currentDesc, string currentDate, string startTime, string endTime, int currentCap)
         {
             InitializeComponent();
             
@@ -19,12 +19,11 @@ namespace Registration_Form.Forms.Organizers
             txtTitle.Text = currentTitle;
             txtDesc.Text = currentDesc;
             numCap.Value = currentCap;
+            lblTimeValue.Text = startTime + " - " + endTime;
 
             DateTime parsedDate;
             if (DateTime.TryParse(currentDate, out parsedDate))
                 dtpDate.Value = parsedDate;
-
-           
         }
 
         private void btnSave_Click(object sender, EventArgs e)

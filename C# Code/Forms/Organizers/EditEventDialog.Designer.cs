@@ -23,10 +23,10 @@ namespace Registration_Form.Forms.Organizers
             this.numCap = new System.Windows.Forms.NumericUpDown();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblDesc = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblCap = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblTimeValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numCap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@ namespace Registration_Form.Forms.Organizers
             // 
             // dtpDate
             // 
+            this.dtpDate.Enabled = false;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDate.Location = new System.Drawing.Point(20, 230);
             this.dtpDate.Name = "dtpDate";
@@ -93,6 +94,24 @@ namespace Registration_Form.Forms.Organizers
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // lblTime
+            // 
+            this.lblTime.Location = new System.Drawing.Point(20, 270);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(100, 20);
+            this.lblTime.TabIndex = 10;
+            this.lblTime.Text = "Time:";
+            // 
+            // lblTimeValue
+            // 
+            this.lblTimeValue.Enabled = false;
+            this.lblTimeValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTimeValue.Location = new System.Drawing.Point(130, 270);
+            this.lblTimeValue.Name = "lblTimeValue";
+            this.lblTimeValue.Size = new System.Drawing.Size(200, 20);
+            this.lblTimeValue.TabIndex = 11;
+            this.lblTimeValue.Text = "00:00 - 00:00";
             // 
             // lblTitle
             // 
@@ -142,6 +161,8 @@ namespace Registration_Form.Forms.Organizers
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.lblTimeValue);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -167,5 +188,7 @@ namespace Registration_Form.Forms.Organizers
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblCap;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblTimeValue;
     }
 }

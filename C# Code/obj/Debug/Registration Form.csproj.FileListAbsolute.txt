@@ -1,56 +1,4 @@
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\bin\Debug\Registration Form.exe.config
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\bin\Debug\Registration Form.exe
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\bin\Debug\Registration Form.pdb
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.csproj.AssemblyReference.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration_Form.Form1.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration_Form.Properties.Resources.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.csproj.GenerateResource.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.csproj.CoreCompileInputs.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.exe
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.pdb
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration Form.exe.config
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\Registration Form\obj\Debug\Registration_Form.RegisterForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\bin\Debug\Registration Form.exe.config
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\bin\Debug\Registration Form.exe
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\bin\Debug\Registration Form.pdb
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.csproj.AssemblyReference.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.exe.config
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.Properties.Resources.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.csproj.GenerateResource.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.csproj.CoreCompileInputs.cache
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.exe
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration Form.pdb
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.BaseForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.LoginForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.ChangePasswordForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.CreateAccountForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.AttendeeForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.AdminForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.Forms.Organizers.OrganizerForm.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.Forms.Organizers.EditEventDialog.resources
-C:\Users\lenovo\OneDrive\Desktop\SWE Project\C# Code\obj\Debug\Registration_Form.Forms.Attendees.EventsDetialsDialog.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\bin\Debug\Registration Form.exe.config
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\bin\Debug\Registration Form.exe
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\bin\Debug\Registration Form.pdb
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration Form.csproj.AssemblyReference.cache
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.AdminForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.AttendeeForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.Forms.Attendees.EventsDetialsDialog.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.Forms.Organizers.EditEventDialog.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.Forms.Organizers.OrganizerForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.BaseForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.LoginForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.Properties.Resources.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.CreateAccountForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration_Form.ChangePasswordForm.resources
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration Form.csproj.GenerateResource.cache
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration Form.csproj.CoreCompileInputs.cache
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration Form.exe
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registration Form.pdb
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\bin\Debug\oracle.dataaccess.dll
-C:\Users\n8900\Downloads\Compressed\oracle\SW_Labs\SW_Pro\swe-project\C# Code\obj\Debug\Registra.B6EF51E7.Up2Date
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.csproj.AssemblyReference.cache
-C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.exe.config
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration_Form.AdminForm.resources
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration_Form.AttendeeForm.resources
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration_Form.Forms.Attendees.EventsDetialsDialog.resources
@@ -63,9 +11,11 @@ C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration_Form.ChangePasswordForm.resources
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.csproj.GenerateResource.cache
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.csproj.CoreCompileInputs.cache
-C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.exe
-C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.pdb
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\bin\Debug\Registration Form.exe.config
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\bin\Debug\Registration Form.exe
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\bin\Debug\Registration Form.pdb
+C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\bin\Debug\Oracle.DataAccess.dll
 C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registra.B6EF51E7.Up2Date
+C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.exe
+C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.pdb
+C:\Users\lenovo\OneDrive\Desktop\SoftWare Enginneering Project\C# Code\obj\Debug\Registration Form.exe.config

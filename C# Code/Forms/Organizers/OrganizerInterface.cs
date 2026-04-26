@@ -14,7 +14,7 @@ namespace Registration_Form
 
         // status is appending by default
         // return true if it create else false
-        bool createEvent(int timeSlotID, int organizerID,string eventTitel, string descripation, DateTime date, int capacity);
+        int createEvent(int timeSlotID, int organizerID,string eventTitel, string descripation, DateTime date, int capacity);
 
         #endregion
 
@@ -36,7 +36,11 @@ namespace Registration_Form
         // "TimeSlotID,startTime,endtime,date" 
         string[] getAllAvailableTimeSlots();  // these will display to Organizer
 
-        bool updateTimeSlotStatus(int timeSlotID,string status);
+
+        // this should return all Events for specific organizer that 
+        // each element is raw structured as :
+        // "eventid,title,description,date,startTime,endTime,capacity,status"
+        string[] getAllEventsForOrganizer(int organizerID);
 
         #endregion
 
