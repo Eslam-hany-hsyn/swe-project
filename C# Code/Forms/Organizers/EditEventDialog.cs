@@ -19,7 +19,7 @@ namespace Registration_Form.Forms.Organizers
             txtTitle.Text = currentTitle;
             txtDesc.Text = currentDesc;
             numCap.Value = currentCap;
-            lblTimeValue.Text = startTime + " - " + endTime;
+            lblTimeValue.Text = DateTime.Parse(startTime).ToString("hh:mm tt") + " - " + DateTime.Parse(endTime).ToString("hh:mm tt");
 
             DateTime parsedDate;
             if (DateTime.TryParse(currentDate, out parsedDate))

@@ -1,3 +1,5 @@
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,46 +9,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
 
 namespace Registration_Form
 {
     public partial class AdminForm : Form, AdminInterface
     {
-        string connStr = "Data Source=orcl;User Id=scott;Password=123;";
+        string connStr = "Data Source=orcl;User Id=hr;Password=123;";
         public AdminForm()
         {
             InitializeComponent();
 
         }
-        List<Control> Events = new List<Control>();
-        private int _nextTimeSlotId = 4;
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-
-
-            // Load Mock Data for Time Slots Table on page 2
-            string[] ts1 = { "10:00 AM", "12:00 PM", "Oct 20, 2024", "Free" };
-            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(1, ts1));
-
-            string[] ts2 = { "01:00 PM", "03:00 PM", "Oct 21, 2024", "Booked" };
-            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(2, ts2));
-
-            string[] ts3 = { "04:00 PM", "06:00 PM", "Oct 22, 2024", "Free" };
-            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(3, ts3));
-            foreach (string raw in getAllAppendingEvent())
+            loadPendingEvents();
+            LoadSlots();
+        }
+        
+        private void LoadSlots()
+        {
+            string[] availableSlots = getAllTimeSlots();
+            foreach (string raw in availableSlots)
             {
                 string[] parts = raw.Split(',');
-                if (parts.Length >= 5)
-                {
-                    int id = int.Parse(parts[0]);
-                    string[] uiData = { parts[1], parts[2], parts[3], parts[4] };
-                    flowLayoutPanel_Events.Controls.Add(CreateAdminDataRow(id, uiData));
-                }
-            }
 
+                int id = int.Parse(parts[0]);
+                string[] uiData = { DateTime.Parse(parts[1]).ToShortTimeString(), DateTime.Parse(parts[2]).ToShortTimeString(), DateTime.Parse(parts[3]).ToShortDateString(), parts[4] };
+
+                flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(id, uiData));
+            }
+        }
+
+        private void loadPendingEvents()
+        {
+            //EVENTID,TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,timeSlotID
+            string[] appendingEvents = getAllAppendingEvent();
+            foreach (string raw in appendingEvents)
+            {
+                string[] parts = raw.Split(',');
+
+                int id = int.Parse(parts[0]);
+                string[] uiData = { parts[1], DateTime.Parse(parts[2]).ToShortDateString(), DateTime.Parse(parts[3]).ToShortTimeString(), DateTime.Parse(parts[4]).ToShortTimeString(), parts[5], parts[6] };
+                flowLayoutPanel_Events.Controls.Add(CreateAdminDataRow(id, uiData));
+            }
         }
 
         public Panel CreateTimeSlotDataRow(int slotId, string[] rowData, int width = 450)
@@ -155,22 +161,34 @@ namespace Registration_Form
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30f));
 
             // Create standard text labels for the first 4 columns
-            for (int i = 0; i < 4; i++)
+            //TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,timeSlotID
+            int j = 0;
+            for (int i = 0; i < 6; i++)
             {
+                if (i == 3)
+                    continue;
                 Label lblCell = new Label
                 {
-                    Text = rowData[i],
+                    Text = (i == 2) ? rowData[i] + " - " + rowData[i+1] : rowData[i],
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleCenter,
                     Font = new Font("Segoe UI", 9.5F),
                     AutoEllipsis = true,
                     ForeColor = Color.FromArgb(40, 40, 40)
                 };
-                tableLayout.Controls.Add(lblCell, i, 0);
+                tableLayout.Controls.Add(lblCell, j++, 0);
             }
 
             // 5th Column Action Panel
             Panel actionPanel = new Panel { Dock = DockStyle.Fill };
+
+            //TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,timeSlotID
+            string title = rowData[0];
+            string SLOTDATE = rowData[1];
+            string startTime = rowData[2];
+            string endtime = rowData[3];
+            string status = rowData[4];
+            string slotID = rowData[5];
 
             Button btnApprove = new Button
             {
@@ -182,8 +200,10 @@ namespace Registration_Form
                 Size = new Size(85, 30),
                 Location = new Point(10, 5),
                 Cursor = Cursors.Hand,
-                Tag = eventId
+                Tag = eventId,
+                AccessibleDescription = string.Join(",", rowData)
             };
+
             btnApprove.FlatAppearance.BorderSize = 0;
             btnApprove.Click += BtnApprove_Click;
 
@@ -197,7 +217,8 @@ namespace Registration_Form
                 Size = new Size(85, 30),
                 Location = new Point(110, 5),
                 Cursor = Cursors.Hand,
-                Tag = eventId
+                Tag = eventId,
+                AccessibleDescription = string.Join(",", rowData)
             };
             btnDeny.FlatAppearance.BorderSize = 0;
             btnDeny.Click += BtnDeny_Click;
@@ -215,68 +236,61 @@ namespace Registration_Form
         {
             Button btn = (Button)sender;
             int eventId = (int)btn.Tag;
-            bool isUpdated = updateEventStatus(eventId, "Approved");
 
+            //TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,slotId
+            string[] rowData = btn.AccessibleDescription.Split(',');
+            string title = rowData[0];
+            string date = rowData[1];
+            string startTime = rowData[2];
+            string endTime = rowData[3];
+
+            bool isUpdated = updateEventStatus(eventId, "approved");
             if (!isUpdated)
             {
                 MessageBox.Show($"Event {eventId} Failed to Update!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            Panel actionPanel = (Panel)btn.Parent;
-            TableLayoutPanel tableLayout = (TableLayoutPanel)actionPanel.Parent;
-            Panel rowPanel = (Panel)tableLayout.Parent;
-
-            // Extract visually presented Data
-            string title = tableLayout.GetControlFromPosition(0, 0).Text;
-            string date = tableLayout.GetControlFromPosition(1, 0).Text;
-            string time = tableLayout.GetControlFromPosition(2, 0).Text;
-
+            
             // Send notification to attendees
-            Registration_Form.AttendeeForm.GlobalNotifications.Add($"NEW EVENT: '{title}' is now registered for {date} at {time}!");
+            Registration_Form.AttendeeForm.GlobalNotifications.Add($"(*)NEW EVENT: '{title}' is now registered\n for {date} at {startTime} - {endTime}\n");
 
-            flowLayoutPanel_Events.Controls.Remove(rowPanel);
-            rowPanel.Dispose();
+            flowLayoutPanel_Events.Controls.Clear();
+            loadPendingEvents();
 
-            string[] tsData = { time, "TBD", date, "Booked" };
-            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(eventId, tsData));
+            
+            flowTimeSlots.Controls.Clear();
+            LoadSlots();
 
             MessageBox.Show($"Event {eventId} Approved and allocated to the Time Slots schedule as Booked!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void BtnDeny_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             int eventId = (int)btn.Tag;
-            bool isUpdated = updateEventStatus(eventId, "Denied");
 
+            //TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,slotId
+            string[] rowData = btn.AccessibleDescription.Split(',');
+            string title = rowData[0];
+            string date = rowData[1];
+            string startTime = rowData[2];
+            string endTime = rowData[3];
+
+
+            bool isUpdated = updateEventStatus(eventId, "Denied");
             if (!isUpdated)
             {
                 MessageBox.Show($"Event {eventId} Failed to Update!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Reaching the row container visually
-            Panel actionPanel = (Panel)btn.Parent;
-            TableLayoutPanel tableLayout = (TableLayoutPanel)actionPanel.Parent;
-            Panel rowPanel = (Panel)tableLayout.Parent;
 
-            // Extract visually presented Data 
-            string title = tableLayout.GetControlFromPosition(0, 0).Text;
-            string date = tableLayout.GetControlFromPosition(1, 0).Text;
-            string time = tableLayout.GetControlFromPosition(2, 0).Text;
+            flowLayoutPanel_Events.Controls.Clear();
+            loadPendingEvents();
 
-            // Send notification to attendees
-            Registration_Form.AttendeeForm.GlobalNotifications.Add($"CANCELLED: '{title}' originally set for {date} was denied.");
 
-            // Visually remove from Pending Events
-            flowLayoutPanel_Events.Controls.Remove(rowPanel);
-            rowPanel.Dispose();
-
-            // Adds back to pool as Free
-            string[] tsData = { time, "TBD", date, "Free" };
-            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(eventId, tsData));
+            flowTimeSlots.Controls.Clear();
+            LoadSlots();
 
             MessageBox.Show($"Event {eventId} Denied! Flow reverted to Free time slot.", "Action Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
@@ -310,29 +324,36 @@ namespace Registration_Form
 
                     int adminID = 1;
 
-
-
                     string insertSql = @"
-    INSERT INTO TimeSlots (AdminID, StartTime, EndTime, SlotDate)
-    VALUES (:adminID,
-            TO_DATE(TO_CHAR(:slotDate, 'DD/MM/YYYY') || ' ' || :startTime, 'DD/MM/YYYY HH24:MI'),
-            TO_DATE(TO_CHAR(:slotDate, 'DD/MM/YYYY') || ' ' || :endTime,   'DD/MM/YYYY HH24:MI'),
-            :slotDate)";
+                    INSERT INTO TimeSlots (AdminID, StartTime, EndTime, SlotDate)
+                    VALUES 
+                    (
+                        :adminID,
+                        TO_DATE(TO_CHAR(:slotDate,'DD/MM/YYYY') || ' ' || :startTime, 'DD/MM/YYYY HH24:MI'),
+                        TO_DATE(TO_CHAR(:slotDate,'DD/MM/YYYY') || ' ' || :endTime,   'DD/MM/YYYY HH24:MI'),
+                        :slotDate
+                    ) RETURNING TimeSlotID INTO :id";
 
                     using (OracleCommand cmd = new OracleCommand(insertSql, con))
                     {
                         cmd.BindByName = true;
+
                         cmd.Parameters.Add(":adminID", OracleDbType.Int32).Value = adminID;
                         cmd.Parameters.Add(":slotDate", OracleDbType.Date).Value = date.Date;
                         cmd.Parameters.Add(":startTime", OracleDbType.Varchar2).Value = startTime;
                         cmd.Parameters.Add(":endTime", OracleDbType.Varchar2).Value = endTime;
 
+                        cmd.Parameters.Add(":id", OracleDbType.Decimal).Direction = ParameterDirection.Output;
+
                         int rows = cmd.ExecuteNonQuery();
+
+                        int timeslotid = int.Parse(cmd.Parameters[":id"].Value.ToString());
 
                         if (rows > 0)
                         {
-                            string[] rowData = { startTime, endTime, date.ToString("MMM dd, yyyy"), "Free" };
-                            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(_nextTimeSlotId++, rowData));
+                            string[] rowData = { startTime, endTime,date.ToString("MMM dd, yyyy"), "Free"};
+
+                            flowTimeSlots.Controls.Add(CreateTimeSlotDataRow(timeslotid, rowData));
                             return true;
                         }
                         return false;
@@ -347,6 +368,7 @@ namespace Registration_Form
             }
         }
 
+        //EVENTID,TITLE,SLOTDATE,STARTTIME,ENDTIME,STATUS,timeSlotID
         public string[] getAllAppendingEvent()
         {
             var results = new List<string>();
@@ -369,14 +391,15 @@ namespace Registration_Form
                             while (reader.Read())
                             {
 
-                                string row = string.Join(",",
-                                    reader["EVENTID"].ToString(),
-                                    reader["TITLE"].ToString(),
-                                    reader["SLOTDATE"].ToString(),
-                                    reader["STARTTIME"].ToString(),
-                                    reader["STATUS"].ToString()
-                                );
-                                results.Add(row);
+                                int id = int.Parse(reader["EVENTID"].ToString());
+                                string title = reader["TITLE"].ToString();
+                                string slotDate = reader["SLOTDATE"].ToString();
+                                string startTime = reader["startTime"].ToString();
+                                string endTime = reader["ENDTIME"].ToString();
+                                string status = reader["STATUS"].ToString();
+                                string slotID = reader["TimeSlotID"].ToString();
+                                results.Add($"{id},{title},{slotDate},{startTime},{endTime},{status},{slotID}");
+                                
                             }
                         }
                     }
@@ -419,8 +442,8 @@ namespace Registration_Form
 
                         cmd.ExecuteNonQuery();
 
-                        Oracle.DataAccess.Types.OracleDecimal oraVal =
-                        (Oracle.DataAccess.Types.OracleDecimal)cmd.Parameters["p_organizerID"].Value;
+                        OracleDecimal oraVal =
+                        (OracleDecimal)cmd.Parameters["p_organizerID"].Value;
                         organizerID = (int)oraVal.Value;
                         eventTitle = cmd.Parameters["p_title"].Value.ToString();
                     }
@@ -462,6 +485,7 @@ namespace Registration_Form
             }
         }
 
+        // EVENTID,TITLE,SLOTDATE
         public string[] getAllApprovedEventTitles()
         {
             var results = new List<string>();
@@ -494,7 +518,7 @@ namespace Registration_Form
                                 string row = string.Join(",",
                                     reader["EVENTID"].ToString(),
                                     reader["TITLE"].ToString(),
-                                    reader["SLOTDATE"].ToString()
+                                    reader["slotDate"].ToString()
                                 );
                                 results.Add(row);
                             }
@@ -510,6 +534,48 @@ namespace Registration_Form
             }
 
             return results.ToArray();
+        }
+
+        // "id,startTime,endTime,slotDate,status;
+        public string[] getAllTimeSlots()
+        {
+            List<string> slots = new List<string>();
+
+            try
+            {
+                using (OracleConnection conn = new OracleConnection(connStr))
+                {
+                    conn.Open();
+
+                    using (OracleCommand cmd = new OracleCommand("Get_All_TimeSlots", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // OUT cursor parameter (Phase 2 A.4 — select multiple rows via stored procedure)
+                        cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                int id = int.Parse(reader["TimeSlotID"].ToString());
+                                string startTime = reader["StartTime"].ToString();
+                                string endTime = reader["EndTime"].ToString();
+                                string slotDate = reader["slotDate"].ToString();
+                                string status = reader["StatusText"].ToString();
+                                slots.Add($"{id},{startTime},{endTime},{slotDate},{status}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("DB Error (getAllAvailableTimeSlots): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return slots.ToArray();
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)

@@ -26,7 +26,7 @@ namespace Registration_Form.Forms.Organizers
 
         private void OrganizerForm_Load(object sender, EventArgs e)
         {
-           
+
             // Dynamically Load Available Time Slots from Interface
             LoadAvailableSlots();
             LoadEventsOrganizers();
@@ -39,48 +39,24 @@ namespace Registration_Form.Forms.Organizers
 
             if (slots == null || slots.Length == 0)
             {
-                
+
                 return;
             }
-            dtpSubmitDate.Value = DateTime.Parse(slots[0].Split(',')[3]);
 
             foreach (string slotRaw in slots)
             {
                 string[] parts = slotRaw.Split(',');
-                if (parts.Length >= 4)
-                {
-                    int id = int.Parse(parts[0]);
-                    // Mapping "TimeSlotID,startTime,endtime,date" -> UI "startTime, endtime, date, Status"
-                    string[] uiData = { parts[1], parts[2], parts[3], "Free" };
-                    Panel slot = CreateTimeSlotDataRow(id, uiData);
-                    flowTimeSlots.Controls.Add(slot);
-                }
+               
+             
+                int id = int.Parse(parts[0]);
+                // Mapping "TimeSlotID,startTime,endtime,date" -> UI "startTime, endtime, date, Status"
+                string[] Data = { DateTime.Parse(parts[1]).ToShortTimeString(), DateTime.Parse(parts[2]).ToShortTimeString(), DateTime.Parse(parts[3]).ToShortDateString(), "Free" };
+                Panel slot = CreateTimeSlotDataRow(id, Data);
+                flowTimeSlots.Controls.Add(slot);
+             
             }
         }
-
-        private void LoadEventsOrganizers()
-        {
-            flowEvents.Controls.Clear();
-            string[] events = getAllEventsForOrganizer(LoginForm.userID);
-
-            if (events == null || events.Length == 0)
-            {
-
-                return;
-            }
-
-            foreach (string slotRaw in events)
-            {
-                string[] parts = slotRaw.Split(',');
-                if (parts.Length >= 4)
-                {
-                    int id = int.Parse(parts[0]);
-                    Panel slot = CreateOrganizerDataRow(id, parts);
-                    flowEvents.Controls.Add(slot);
-                }
-            }
-        }
-
+    
         public Panel CreateTimeSlotDataRow(int slotId, string[] rowData, int width = 530)
         {
             Panel rowPanel = new Panel
@@ -116,7 +92,7 @@ namespace Registration_Form.Forms.Organizers
             {
                 Label lblCell = new Label
                 {
-                    Text = (i == 2)?(DateTime.Parse(rowData[i]).ToShortDateString()) : (DateTime.Parse(rowData[i]).TimeOfDay.ToString()),
+                    Text = rowData[i],
                     Dock = DockStyle.Fill,
                     TextAlign = ContentAlignment.MiddleLeft,
                     Font = new Font("Segoe UI", 9.5F),
@@ -158,6 +134,31 @@ namespace Registration_Form.Forms.Organizers
 
             rowPanel.Controls.Add(tableLayout);
             return rowPanel;
+        }
+
+        private void LoadEventsOrganizers()
+        {
+
+            flowEvents.Controls.Clear();
+            string[] events = getAllEventsForOrganizer(LoginForm.userID);
+
+            if (events == null || events.Length == 0)
+            {
+
+                return;
+            }
+
+            foreach (string slotRaw in events)
+            {
+                // "eventid,title,description,date,startTime,endTime,capacity,status"
+                string[] parts = slotRaw.Split(',');
+                
+                int id = int.Parse(parts[0]);
+                string[] data = { parts[0],parts[1], parts[2], DateTime.Parse(parts[3]).ToShortDateString(), DateTime.Parse(parts[4]).ToShortTimeString(), DateTime.Parse(parts[5]).ToShortTimeString(), parts[6], parts[7] };
+                Panel slot = CreateOrganizerDataRow(id, data);
+                flowEvents.Controls.Add(slot);
+            
+            }
         }
 
         public Panel CreateOrganizerDataRow(int eventId, string[] rowData, int width = 920)
@@ -218,9 +219,9 @@ namespace Registration_Form.Forms.Organizers
             };
 
             // Mimic Pill Coloring
-            if (rowData[7] == "Approved") lblStatus.BackColor = Color.FromArgb(40, 167, 69);
-            else if (rowData[7] == "Pending") { lblStatus.BackColor = Color.FromArgb(255, 193, 7); lblStatus.ForeColor = Color.Black; }
-            else if (rowData[7] == "Rejected") lblStatus.BackColor = Color.FromArgb(220, 53, 69);
+            if (rowData[7].ToLower() == "approved") lblStatus.BackColor = Color.FromArgb(40, 167, 69);
+            else if (rowData[7].ToLower() == "pending") { lblStatus.BackColor = Color.FromArgb(255, 193, 7); lblStatus.ForeColor = Color.Black; }
+            else if (rowData[7].ToLower() == "rejected") lblStatus.BackColor = Color.FromArgb(220, 53, 69);
             else lblStatus.BackColor = Color.Gray;
 
             statusContainer.Controls.Add(lblStatus);
@@ -229,41 +230,45 @@ namespace Registration_Form.Forms.Organizers
             // 3. Actions Panel (Column 4)
             Panel actionPanel = new Panel { Dock = DockStyle.Fill };
 
-            Button btnEdit = new Button
-            {
-                Text = "Edit",
-                BackColor = Color.FromArgb(70, 130, 220),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
-                Size = new Size(55, 26),
-                Location = new Point(60, 3),
-                Cursor = Cursors.Hand,
-                Tag = eventId,
-                AccessibleDescription = string.Join(",", rowData),
-            };
-            // Event Row structure: Title, Date, Time, Status
+            if(rowData[7].ToLower() != "cancelled")
+                {Button btnEdit = new Button
+                {
+                    Text = "Edit",
+                    BackColor = Color.FromArgb(70, 130, 220),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                    Size = new Size(55, 26),
+                    Location = new Point(60, 3),
+                    Cursor = Cursors.Hand,
+                    Tag = eventId,
+                    AccessibleDescription = string.Join(",", rowData),
+                };
+                // Event Row structure: Title, Date, Time, Status
 
-            btnEdit.FlatAppearance.BorderSize = 0;
-            btnEdit.Click += BtnEdit_Click;
+                btnEdit.FlatAppearance.BorderSize = 0;
+                btnEdit.Click += BtnEdit_Click;
 
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                BackColor = Color.LightGray,
-                ForeColor = Color.Black,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
-                Size = new Size(55, 26),
-                Location = new Point(120, 3),
-                Cursor = Cursors.Hand,
-                Tag = eventId
-            };
-            btnCancel.FlatAppearance.BorderSize = 0;
-            btnCancel.Click += BtnCancel_Click;
+                Button btnCancel = new Button
+                {
+                    Text = "Cancel",
+                    BackColor = Color.LightGray,
+                    ForeColor = Color.Black,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                    Size = new Size(55, 26),
+                    Location = new Point(120, 3),
+                    Cursor = Cursors.Hand,
+                    Tag = eventId,
+                    AccessibleDescription = string.Join(",", rowData),
 
-            actionPanel.Controls.Add(btnEdit);
-            actionPanel.Controls.Add(btnCancel);
+                };
+                btnCancel.FlatAppearance.BorderSize = 0;
+                btnCancel.Click += BtnCancel_Click;
+
+                actionPanel.Controls.Add(btnEdit);
+                actionPanel.Controls.Add(btnCancel);
+            }
 
             tableLayout.Controls.Add(actionPanel, 4, 0);
             rowPanel.Controls.Add(tableLayout);
@@ -293,7 +298,7 @@ namespace Registration_Form.Forms.Organizers
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    bool success = updateEvent(eventId, dialog.EventTitle, dialog.Description, dialog.EventDate, dialog.Capacity);
+                    bool success = updateEvent(eventId, dialog.EventTitle, dialog.Description, dialog.EventDate.Date, dialog.Capacity);
 
                     if (success)
                     {
@@ -304,7 +309,7 @@ namespace Registration_Form.Forms.Organizers
                         tableLayout.GetControlFromPosition(0, 0).Text = dialog.EventTitle;
                         // Date and Time are disabled in dialog, but we update them just in case
                         tableLayout.GetControlFromPosition(1, 0).Text = dialog.EventDate.ToShortDateString();
-                        
+
                         // Update AccessibleDescription for future edits
                         data[0] = dialog.EventTitle;
                         data[1] = dialog.Description;
@@ -322,10 +327,16 @@ namespace Registration_Form.Forms.Organizers
             Button btn = (Button)sender;
             int eventId = (int)btn.Tag;
 
-            var result = MessageBox.Show($"Are you sure you want to cancel event {eventId}?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            var result = MessageBox.Show($"Are you sure you want to cancel event?", "Confirm Cancellation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 cancelEvent(eventId);
+
+                // 1. Remove from Time Slots
+                flowEvents.Controls.Clear();
+                LoadEventsOrganizers();
+
                 MessageBox.Show($"Event {eventId} cancelled.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -340,19 +351,9 @@ namespace Registration_Form.Forms.Organizers
             TableLayoutPanel tableLayout = (TableLayoutPanel)actionContainer.Parent;
             Panel rowPanel = (Panel)tableLayout.Parent;
 
-            // Extract Slot Data
-            string startTime = tableLayout.GetControlFromPosition(0, 0).Text;
-            string endTime = tableLayout.GetControlFromPosition(1, 0).Text;
+
             string date = tableLayout.GetControlFromPosition(2, 0).Text;
             string eventTitle = !string.IsNullOrWhiteSpace(txtEventTitle.Text) && txtEventTitle.Text != "Event Title" ? txtEventTitle.Text : "Requested Event";
-
-            // 1. Remove from Time Slots
-            flowTimeSlots.Controls.Remove(rowPanel);
-            rowPanel.Dispose();
-
-            // 2. Add to Events Table with "Pending" status
-            // Event Row structure: Title, Date, Time, Status
-            dtpSubmitDate.Value = DateTime.Parse(date);
 
 
             if (string.IsNullOrWhiteSpace(txtEventTitle.Text))
@@ -362,15 +363,18 @@ namespace Registration_Form.Forms.Organizers
             }
 
             int capacity = (int)numCapacity.Value;
-            int eventID = createEvent(TimeSlotIdBooked, LoginForm.userID, txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value, capacity);
+            int eventID = createEvent(TimeSlotIdBooked, LoginForm.userID, txtEventTitle.Text, txtDescription.Text, DateTime.Parse(date).Date, capacity);
 
-            // eventid, title, description, date, startTime, endTime , capacity , status
-            string[] eventInfo = { eventID.ToString(), txtEventTitle.Text, txtDescription.Text, dtpSubmitDate.Value.ToShortDateString(), startTime, endTime, capacity.ToString(), "pending" };
-            flowEvents.Controls.Add(CreateOrganizerDataRow(eventID, eventInfo));
+            // 1. Remove from Time Slots
+            flowTimeSlots.Controls.Clear();
+            LoadAvailableSlots();
+
+            flowEvents.Controls.Clear();
+            LoadEventsOrganizers();
 
             if (eventID != -1)
             {
-                MessageBox.Show($"Success! '{eventTitle}' has been booked for {date} at {startTime}. It is now pending administrator approval.", "Booking Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Success! '{eventTitle}' has been booked.\n It is now pending administrator approval.", "Booking Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -405,43 +409,57 @@ namespace Registration_Form.Forms.Organizers
         }
 
 
-
         // You will only Implement these Functions
 
         #region Tasks Will TODO
 
-        // =========================================================
-        // FR4 - CONNECTED MODE: Insert new event row (no procedure)
-        // Requirement: Insert rows Without using Procedures
-        // =========================================================
         public int createEvent(int timeSlotID, int organizerID, string eventTitle, string description, DateTime date, int capacity)
         {
-            // Step 1: Resolve PersonID -> OrganizerID (connected mode, bind variables)
 
             // Step 2: Insert event directly — no stored procedure (Phase 2 requirement A.2)
             string insertQuery = @"
                 INSERT INTO Events (OrganizerID, TimeSlotID, Title, Description, Status, Capacity)
-                VALUES (:organizerID, :timeSlotID, :title, :description, 'Pending', :capacity)";
+                VALUES (:organizerID, :timeSlotID, :title, :description, 'Pending', :capacity)
+                    ";
 
             try
             {
                 using (OracleConnection conn = new OracleConnection(ordb))
                 {
                     conn.Open();
+                    int eventid = -1;
 
                     // Insert the event row using bind variables (Phase 2 requirement A.1 + A.2)
                     using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
                     {
 
-                        cmd.Parameters.Add("organizerID", OracleDbType.Int32).Value = organizerID ;
+                        cmd.Parameters.Add("organizerID", OracleDbType.Int32).Value = organizerID;
                         cmd.Parameters.Add("timeSlotID", OracleDbType.Int32).Value = timeSlotID;
                         cmd.Parameters.Add("title", OracleDbType.NVarchar2).Value = eventTitle;
                         cmd.Parameters.Add("description", OracleDbType.Clob).Value = description;
                         cmd.Parameters.Add("capacity", OracleDbType.Int32).Value = capacity;
+                      
 
                         int rows = cmd.ExecuteNonQuery();
-                        return rows > 0;
+
+                        
                     }
+
+                    using (OracleCommand cmd2 = new OracleCommand("select eventID from Events where organizerID =:ido and timeSlotID =:idt", conn))
+                    {
+                        cmd2.Parameters.Add("ido", organizerID);
+                        cmd2.Parameters.Add("idt", timeSlotID);
+
+                        OracleDataReader dr = cmd2.ExecuteReader();
+                        if(dr.Read())
+                        {
+                            eventid = int.Parse(dr[0].ToString());
+                        }
+
+
+                        return eventid;
+                    }
+                       
                 }
             }
             catch (OracleException ex)
@@ -450,12 +468,7 @@ namespace Registration_Form.Forms.Organizers
                 return -1;
             }
         }
-
-        // =========================================================
-        // FR5 - CONNECTED MODE: Cancel event using stored procedure
-        // Requirement A.3: Select ONE row using stored procedure
-        //                  with OUT parameters of NUMBER data type
-        // =========================================================
+       
         public bool cancelEvent(int eventID)
         {
             // Direct UPDATE — sets Status to 'Cancelled'
@@ -497,10 +510,6 @@ namespace Registration_Form.Forms.Organizers
             }
         }
 
-        // =========================================================
-        // FR5 - DISCONNECTED MODE: Update event using OracleDataAdapter
-        //       + OracleCommandBuilder (Phase 2 requirement B.2)
-        // =========================================================
         public bool updateEvent(int eventID, string eventTitle, string description, DateTime date, int capacity)
         {
             // Disconnected mode: fetch the row into a DataSet, modify it,
@@ -546,27 +555,6 @@ namespace Registration_Form.Forms.Organizers
             }
         }
 
-        // =========================================================
-        // FR6 - CONNECTED MODE: Select multiple rows using stored procedure
-        //       Phase 2 requirement A.4: Select multiple rows using stored procedures
-        //       Uses Get_Available_TimeSlots stored procedure (see below)
-        //
-        //  Required stored procedure in Oracle:
-        //  CREATE OR REPLACE PROCEDURE Get_Available_TimeSlots(
-        //      p_cursor OUT SYS_REFCURSOR
-        //  ) AS
-        //  BEGIN
-        //      OPEN p_cursor FOR
-        //          SELECT ts.TimeSlotID, ts.StartTime, ts.EndTime, ts.SlotDate
-        //          FROM   TimeSlots ts
-        //          WHERE  NOT EXISTS (
-        //              SELECT 1 FROM Events e
-        //              WHERE  e.TimeSlotID = ts.TimeSlotID
-        //              AND    e.Status <> 'Cancelled'
-        //          )
-        //          ORDER BY ts.SlotDate, ts.StartTime;
-        //  END;
-        // =========================================================
         public string[] getAllAvailableTimeSlots()
         {
             List<string> slots = new List<string>();
@@ -590,7 +578,7 @@ namespace Registration_Form.Forms.Organizers
                             while (reader.Read())
                             {
                                 int id = int.Parse(reader["TimeSlotID"].ToString());
-                                string startTime = reader["StartTime"].ToString();
+                                string startTime = reader["StartTime"].ToString(); 
                                 string endTime = reader["EndTime"].ToString();
                                 string slotDate = reader["SlotDate"].ToString();
 
@@ -610,12 +598,41 @@ namespace Registration_Form.Forms.Organizers
 
         public string[] getAllEventsForOrganizer(int organizerID)
         {
-            return null;
+            List<string> Events = new List<string>();
+
+            using (OracleConnection conn = new OracleConnection(ordb))
+            {
+                conn.Open();
+
+                using (OracleCommand cmd = new OracleCommand("Get_All_Events_Organizers", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("organizerID", organizerID);
+                    cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = int.Parse(reader["eventid"].ToString());
+                            string title = reader["title"].ToString();
+                            string description = reader["description"].ToString();
+                            string Date = reader["SlotDate"].ToString();
+                            string startTime = reader["startTime"].ToString();
+                            string endTime = reader["endTime"].ToString();
+                            string capacity = reader["capacity"].ToString();
+                            string status = reader["status"].ToString();
+
+                            Events.Add($"{id},{title},{description},{Date},{startTime},{endTime},{capacity},{status}");
+                        }
+                    }
+                }
+            }
+            return Events.ToArray();
         }
 
         #endregion
 
     }
-
 }
-

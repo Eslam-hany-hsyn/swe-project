@@ -71,22 +71,6 @@ namespace Registration_Form
             this.tabControlAdmin.Size = new System.Drawing.Size(921, 594);
             this.tabControlAdmin.TabIndex = 0;
             // 
-            // btn_Logout
-            // 
-            this.btn_Logout.BackColor = System.Drawing.Color.Crimson;
-            this.btn_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Logout.FlatAppearance.BorderSize = 0;
-            this.btn_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Logout.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold);
-            this.btn_Logout.ForeColor = System.Drawing.Color.White;
-            this.btn_Logout.Location = new System.Drawing.Point(850, 5);
-            this.btn_Logout.Name = "btn_Logout";
-            this.btn_Logout.Size = new System.Drawing.Size(55, 22);
-            this.btn_Logout.TabIndex = 8;
-            this.btn_Logout.Text = "Logout";
-            this.btn_Logout.UseVisualStyleBackColor = false;
-            this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
-            // 
             // tabPendingEvents
             // 
             this.tabPendingEvents.Controls.Add(this.flowLayoutPanel_Events);
@@ -337,6 +321,23 @@ namespace Registration_Form
             this.flowTimeSlots.Padding = new System.Windows.Forms.Padding(10);
             this.flowTimeSlots.Size = new System.Drawing.Size(451, 480);
             this.flowTimeSlots.TabIndex = 9;
+            this.flowTimeSlots.WrapContents = false;
+            // 
+            // btn_Logout
+            // 
+            this.btn_Logout.BackColor = System.Drawing.Color.Crimson;
+            this.btn_Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Logout.FlatAppearance.BorderSize = 0;
+            this.btn_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Logout.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold);
+            this.btn_Logout.ForeColor = System.Drawing.Color.White;
+            this.btn_Logout.Location = new System.Drawing.Point(850, 5);
+            this.btn_Logout.Name = "btn_Logout";
+            this.btn_Logout.Size = new System.Drawing.Size(55, 22);
+            this.btn_Logout.TabIndex = 8;
+            this.btn_Logout.Text = "Logout";
+            this.btn_Logout.UseVisualStyleBackColor = false;
+            this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
             // 
             // AdminForm
             // 

@@ -47,9 +47,7 @@ namespace Registration_Form.Forms.Organizers
             this.lblTSColStatus = new System.Windows.Forms.Label();
             this.flowTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSubmitEvent = new System.Windows.Forms.Panel();
-            this.dtpSubmitDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblSubmitHeader = new System.Windows.Forms.Label();
             this.txtEventTitle = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.RichTextBox();
@@ -197,9 +195,9 @@ namespace Registration_Form.Forms.Organizers
             this.panel1.Controls.Add(this.pnlTSHeader);
             this.panel1.Controls.Add(this.flowTimeSlots);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(437, 0);
+            this.panel1.Location = new System.Drawing.Point(426, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(523, 553);
+            this.panel1.Size = new System.Drawing.Size(534, 553);
             this.panel1.TabIndex = 12;
             // 
             // pnlTSHeader
@@ -213,7 +211,7 @@ namespace Registration_Form.Forms.Organizers
             this.pnlTSHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTSHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlTSHeader.Name = "pnlTSHeader";
-            this.pnlTSHeader.Size = new System.Drawing.Size(523, 30);
+            this.pnlTSHeader.Size = new System.Drawing.Size(534, 30);
             this.pnlTSHeader.TabIndex = 11;
             // 
             // lblTSColStart
@@ -264,14 +262,12 @@ namespace Registration_Form.Forms.Organizers
             this.flowTimeSlots.Location = new System.Drawing.Point(0, 29);
             this.flowTimeSlots.Name = "flowTimeSlots";
             this.flowTimeSlots.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.flowTimeSlots.Size = new System.Drawing.Size(523, 524);
+            this.flowTimeSlots.Size = new System.Drawing.Size(534, 524);
             this.flowTimeSlots.TabIndex = 10;
             // 
             // pnlSubmitEvent
             // 
-            this.pnlSubmitEvent.Controls.Add(this.dtpSubmitDate);
             this.pnlSubmitEvent.Controls.Add(this.label2);
-            this.pnlSubmitEvent.Controls.Add(this.label1);
             this.pnlSubmitEvent.Controls.Add(this.lblSubmitHeader);
             this.pnlSubmitEvent.Controls.Add(this.txtEventTitle);
             this.pnlSubmitEvent.Controls.Add(this.txtDescription);
@@ -282,32 +278,14 @@ namespace Registration_Form.Forms.Organizers
             this.pnlSubmitEvent.Size = new System.Drawing.Size(442, 553);
             this.pnlSubmitEvent.TabIndex = 0;
             // 
-            // dtpSubmitDate
-            // 
-            this.dtpSubmitDate.Enabled = false;
-            this.dtpSubmitDate.Location = new System.Drawing.Point(20, 279);
-            this.dtpSubmitDate.Name = "dtpSubmitDate";
-            this.dtpSubmitDate.Size = new System.Drawing.Size(333, 33);
-            this.dtpSubmitDate.TabIndex = 10;
-            this.dtpSubmitDate.Value = new System.DateTime(2026, 4, 26, 1, 58, 10, 0);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 340);
+            this.label2.Location = new System.Drawing.Point(141, 265);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 28);
             this.label2.TabIndex = 9;
             this.label2.Text = "Event Capacity";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 231);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 28);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Event Date";
             // 
             // lblSubmitHeader
             // 
@@ -349,7 +327,7 @@ namespace Registration_Form.Forms.Organizers
             // numCapacity
             // 
             this.numCapacity.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.numCapacity.Location = new System.Drawing.Point(20, 380);
+            this.numCapacity.Location = new System.Drawing.Point(151, 305);
             this.numCapacity.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -448,7 +426,5 @@ namespace Registration_Form.Forms.Organizers
         private System.Windows.Forms.Label lblTSColStatus;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_Logout;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpSubmitDate;
     }
 }

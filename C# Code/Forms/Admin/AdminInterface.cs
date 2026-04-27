@@ -37,6 +37,8 @@ namespace Registration_Form
         // Hint: read Source of Functional Requirement 9 
         string[] getAllApprovedEventTitles();
 
+        string[] getAllTimeSlots();
+
         #endregion
 
     }
