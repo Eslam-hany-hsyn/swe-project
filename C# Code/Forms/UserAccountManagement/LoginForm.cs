@@ -25,9 +25,9 @@ namespace Registration_Form
             InitializeComponent();
 
             base.inner_mainPanel = this.mainPanel;
-            base.inner_footer = new Control();
             base.inner_header = this.header;
-
+            base.outer_header = this.pnlQuickLogin;
+            base.inner_footer = new Control();
             base.inner_footer.Hide();
             Inner_InitializeLayout();
         }
@@ -132,13 +132,56 @@ namespace Registration_Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Login Error: " + ex.Message);
+                //MessageBox.Show("Login Error: " + ex.Message);
             }
             finally
             {
                 if (con.State == ConnectionState.Open) con.Close();
             }
             return (userID, userRole);
+        }
+
+        private void QuickLogin(string username,string password)
+        {
+            (int id, string role) = Login(username, password);
+            if (id != -1)
+            {
+                userID = id;
+                if (role.ToLower() == "organizer")
+                {
+                    OrganizerForm user = new OrganizerForm();
+                    user.Show();
+                }
+                else if (role.ToLower() == "admin")
+                {
+                    AdminForm user = new AdminForm();
+                    user.Show();
+                }
+                else if (role.ToLower() == "attendee")
+                {
+                    AttendeeForm user = new AttendeeForm();
+                    user.Show();
+                }
+                this.Hide();
+            }
+            else
+                lbl_ErrorMessage.Show();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            QuickLogin("user1", "pass1");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            QuickLogin("user2", "pass2");
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            QuickLogin("user130", "pass130");
+
         }
     }
 }

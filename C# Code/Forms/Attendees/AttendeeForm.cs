@@ -149,6 +149,7 @@ namespace Registration_Form
                 }
             }
         }
+        
         private Panel CreateEventCard(int eventId,string organizerName, string title,string descripation, string dateInfo, string time,int actualCapacity, int capacity, string statusAttendee, Image eventImage)
         {
             // 1. Create Main Card Panel (Optimized for smaller size, 75% of old 280x305)
@@ -266,8 +267,6 @@ namespace Registration_Form
             return pnlCard;
         }
         
-
-
         private void BtnJoin_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -324,9 +323,6 @@ namespace Registration_Form
 
             try
             {
-                if (con.State != ConnectionState.Open)
-                    con.Open();
-
                 using (OracleCommand cmd = new OracleCommand("Filter_Results_Events", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -340,11 +336,15 @@ namespace Registration_Form
 
                     cmd.Parameters.Add("p_record", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
-                    OracleDataReader dr = cmd.ExecuteReader();
+                    OracleDataAdapter da = new OracleDataAdapter(cmd);
+                    DataSet ds = new DataSet();
 
-                    while (dr.Read())
+                    da.Fill(ds); 
+
+                    DataTable dt = ds.Tables[0];
+
+                    foreach (DataRow dr in dt.Rows)
                     {
-
                         string eventID = dr["EVENTID"].ToString();
                         string organizer = dr["ORGANIZERNAME"].ToString();
                         string title1 = dr["TITLE"].ToString();
@@ -357,9 +357,12 @@ namespace Registration_Form
                         string statusAttendee = dr["ATTENDEESTATUS"].ToString();
 
                         int id = int.Parse(eventID);
-                        int Actualcapacity = Get_Total_Registered(id);
+                        int Actualcapacity = Get_Total_Registered(id); // still works
+
                         string row = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}",
-                            eventID, organizer, title1, desc, eventTime, eventDate, Actualcapacity, capacity, statusAttendee);
+                            eventID, organizer, title1, desc,
+                            eventTime, eventDate,
+                            Actualcapacity, capacity, statusAttendee);
 
                         results.Add(row);
                     }
@@ -369,15 +372,10 @@ namespace Registration_Form
             {
                 MessageBox.Show("Error filtering results: " + ex.Message);
             }
-            finally
-            {
-                if (con.State == ConnectionState.Open)
-                    con.Close();
-            }
 
             return results.ToArray();
         }
-        
+
         public string[] Filter_Results_By_Date(DateTime p_date, int p_attendeeid)
         {
 
