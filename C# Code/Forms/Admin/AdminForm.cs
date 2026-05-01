@@ -9,12 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrystalDecisions.Shared;
+using Registration_Form.Forms.Admin;
 
 namespace Registration_Form
 {
     public partial class AdminForm : Form, AdminInterface
     {
-        string connStr = "Data Source=orcl;User Id=hr;Password=123;";
+        string connStr = "Data Source=orcl;User Id=scott;Password=tiger;";
+
+        AttendeesCrystalReport CRAttendee;
+        OrganizerCrystalReport CROrganizer;
+
         public AdminForm()
         {
             InitializeComponent();
@@ -25,6 +31,18 @@ namespace Registration_Form
         {
             loadPendingEvents();
             LoadSlots();
+
+            CRAttendee = new AttendeesCrystalReport();
+            CROrganizer = new OrganizerCrystalReport();
+
+            foreach (ParameterDiscreteValue v in CRAttendee.ParameterFields[0].DefaultValues)
+                cmbxEventTitle.Items.Add(v.Value.ToString());
+
+            foreach (ParameterDiscreteValue v in CROrganizer.ParameterFields[0].DefaultValues)
+                cmbxStatus.Items.Add(v.Value.ToString());
+
+            foreach (ParameterDiscreteValue v in CROrganizer.ParameterFields[1].DefaultValues)
+                cmbxDate.Items.Add(v.Value.ToString());
         }
         
         private void LoadSlots()
@@ -593,5 +611,39 @@ namespace Registration_Form
             new LoginForm().Show();
         }
         #endregion
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbxEventTitle.Text))
+                CRAttendee.SetParameterValue(0, cmbxEventTitle.Text);
+            else
+            { 
+                MessageBox.Show("Select Event title !!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            crrepoAttendee.ReportSource = CRAttendee;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbxStatus.Text) && !string.IsNullOrEmpty(cmbxDate.Text))
+            {
+                CROrganizer.SetParameterValue(0, cmbxStatus.Text);
+                CROrganizer.SetParameterValue(1, DateTime.Parse(cmbxDate.Text));
+            }
+            else
+            {
+                MessageBox.Show("Select Event Status and Date !!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            crrepoOrg.ReportSource = CROrganizer;
+        }
     }
 }

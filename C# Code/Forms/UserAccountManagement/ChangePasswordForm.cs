@@ -17,7 +17,7 @@ namespace Registration_Form
     {
 
         OracleConnection con;
-        string ordb = "data source = orcl; user id =hr; password=123;";
+        string ordb = "data source = orcl; user id =scott; password=tiger;";
         public ChangePasswordForm()
         {
             InitializeComponent();

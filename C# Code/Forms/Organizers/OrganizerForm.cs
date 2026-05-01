@@ -21,7 +21,7 @@ namespace Registration_Form.Forms.Organizers
 
 
 
-        string ordb = "data source = orcl; user id =hr; password=123;";
+        string ordb = "data source = orcl; user id =scott; password=tiger;";
 
 
         private void OrganizerForm_Load(object sender, EventArgs e)

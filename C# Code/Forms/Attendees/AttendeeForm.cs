@@ -18,7 +18,7 @@ namespace Registration_Form
         private const string SearchPlaceholder = "🔍  Search events...";
         
         OracleConnection con;
-        string ordb = "data source = orcl; user id =hr; password=123;";
+        string ordb = "data source = orcl; user id =scott; password=tiger;";
         public AttendeeForm() :base()
         {
             InitializeComponent();
@@ -251,7 +251,11 @@ namespace Registration_Form
 
             // Re-styling status based on text
             if (actualStatus == ("Registered")) { lblStatus.BackColor = Color.FromArgb(220, 245, 220); lblStatus.ForeColor = Color.Green; }
-            else if (actualStatus == ("Full")) { lblStatus.BackColor = Color.FromArgb(255, 220, 220); lblStatus.ForeColor = Color.Red; }
+            else if (actualStatus == ("Full")) { 
+
+                lblStatus.BackColor = Color.FromArgb(255, 220, 220); lblStatus.ForeColor = Color.Red;
+                btnJoin.Enabled = false;    
+            }
             else { lblStatus.BackColor = Color.RoyalBlue; lblStatus.ForeColor = Color.Snow; }
 
             // Assemble components
